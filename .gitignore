@@ -8,8 +8,6 @@
 .idea/**/*
 main_check.c
 
-.travis.yml
-
 obj/**/**
 src_draft/**/*
 
