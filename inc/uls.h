@@ -15,6 +15,7 @@
 typedef struct s_parce {
     char *flags;
     char **addresses;
-}
+}               t_parse;flage
 
 // ======= funcs =======
+void mx_parse_input(int argc, char **argv, t_parse *p);
