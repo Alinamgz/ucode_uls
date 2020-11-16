@@ -43,6 +43,6 @@ int mx_parse_input(int argc, char **argv, t_parse *p) {
     for(; j < argc; j++) {
         p->addresses[k++] = mx_strdup(argv[j]);
     }
-    p->addresses[k++] = mx_strnew(1);
+    p->addresses[k++] = mx_strnew(1); // need to additional free
     return 0;
 }

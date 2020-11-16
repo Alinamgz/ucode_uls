@@ -1,4 +1,4 @@
-#include "../../inc/uls.h"
+#include "uls.h"
 
 int list_longdir(const char *path) {
     DIR *dr;
