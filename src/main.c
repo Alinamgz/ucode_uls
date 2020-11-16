@@ -5,7 +5,7 @@
 int main(int argc, char **argv) {
     t_parse *parse = (t_parse*)malloc(sizeof(t_parse));
     parse->flags = NULL;
-    parse->addresses = NUL;
+    parse->addresses = NULL;
 
     argc == 1 ? mx_printstr(HELLO_MSG) : mx_parse_input(argc, argv, parse);
 
@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     }
     if (parse->addresses) {
         mx_printstr("\n\n=========== files ==============\n");
-        for(i = 0; parse->addresses[i]; i++) {
+        for(int i = 0; parse->addresses[i]; i++) {
             mx_printchar('\t');
             mx_printstr(parse->addresses[i]);
         }
