@@ -18,7 +18,7 @@ static inline void pick_unique_flags(const char *str, t_parse *p) {
     }
 }
 
-void mx_parse_input(int argc, char **argv, t_parse *p) {
+int mx_parse_input(int argc, char **argv, t_parse *p) {
     int i = 0;
     int j = 0;
     int k = 0;
@@ -28,14 +28,14 @@ void mx_parse_input(int argc, char **argv, t_parse *p) {
             pick_unique_flags(argv[j], p);
         }
     }
-    mx_printstr("\n ==== check ===== \n");
+    /*mx_printstr("\n ==== check ===== \n");
     mx_printstr("argc: ");
     mx_printint(argc);
     mx_printstr("\nj: ");
     mx_printint(j);
     mx_printstr("\n argc - j: ");
     mx_printint((argc-j));
-    mx_printstr("\n==================\n\n");
+    mx_printstr("\n==================\n\n");*/
     p->addresses = (char**)malloc(sizeof(char*) * (argc - j + 1));
     for (i = 0; i <= (argc - j + 1); i++) {
         p->addresses[i] = NULL;
@@ -43,4 +43,6 @@ void mx_parse_input(int argc, char **argv, t_parse *p) {
     for(; j < argc; j++) {
         p->addresses[k++] = mx_strdup(argv[j]);
     }
+    p->addresses[k++] = mx_strnew(1);
+    return 0;
 }

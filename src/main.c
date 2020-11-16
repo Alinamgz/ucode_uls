@@ -7,9 +7,14 @@ int main(int argc, char **argv) {
     parse->flags = NULL;
     parse->addresses = NULL;
 
-    argc == 1 ? mx_printstr(HELLO_MSG) : mx_parse_input(argc, argv, parse);
+    if (argc == 1) {
+        list_directory(".");
+        return 0;
+    }
+    else
+        mx_parse_input(argc, argv, parse);
 
-    if (parse->flags) {
+    /*if (parse->flags) {
         mx_printstr("\n\n=========== flags ==============\n");
             mx_printstr(parse->flags);
     }
@@ -20,9 +25,10 @@ int main(int argc, char **argv) {
             mx_printstr(parse->addresses[i]);
         }
         mx_printstr("\n\n");
+    }*/
+    //system("leaks -q  uls");
 
-    }
-    system("leaks -q  uls");
+    output_ls(parse);
 
     return 0;
 }
