@@ -1,6 +1,6 @@
 #include "uls.h"
 
-int output_ls(t_parse *p) {
+void output_ls(t_parse *p) {
     char current_path[] = ".";
     char *path = current_path;
 
@@ -27,5 +27,5 @@ int output_ls(t_parse *p) {
                 if (p->addresses[i + 1][0] != '\0')
                     mx_printchar('\n');
             }
-    return 0;
+    // return 0;
 }

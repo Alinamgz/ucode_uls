@@ -1,7 +1,14 @@
 #pragma once
 
 // ====== defines ======
-#define HELLO_MSG "Hello World!\n"
+#define VALID_FLAGS "l"
+
+// ---- error msg -------
+#define ILLEGAL_OPTION "uls: illegal option -- "
+#define USAGE_START "\nusage: uls [-"
+#define USAGE_END "] [file ...]\n"
+#define ULS "uls: "
+#define ADDR_ERR ": No such file or directory\n"
 
 // ====== includes ======
 #include <sys/types.h>
@@ -20,10 +27,20 @@
 typedef struct s_parce {
     char *flags;
     char **addresses;
+    char **files;
+    char **dirs;
+    char *target;
 }               t_parse;
 
 // ======= funcs =======
-int mx_parse_input(int argc, char **argv, t_parse *p);
-int list_directory(char *path);
-int output_ls(t_parse *p);
-int list_longdir(const char *path);
+// int mx_parse_input(int argc, char **argv, t_parse *p);
+// int list_directory(char *path);
+// int output_ls(t_parse *p);
+// int list_longdir(const char *path);
+
+void mx_parse_input(int argc, char **argv, t_parse *p);
+void mx_validate_flags(t_parse *p);
+
+void list_directory(char *path);
+void output_ls(t_parse *p);
+void list_longdir(const char *path);

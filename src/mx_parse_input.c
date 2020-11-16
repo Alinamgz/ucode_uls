@@ -7,18 +7,22 @@ static inline bool is_flag(const char *str) {
 
 static inline void pick_unique_flags(const char *str, t_parse *p) {
     char buf[2] = {'\0', '\0'};
-    //char *flags_buf = NULL;
+    char *flags_buf = NULL;
 
-// TODO: fix leaks
     for (int i = 1; str[i]; i++) {
         if(mx_get_char_index(p->flags, str[i]) < 0) {
             buf[0] = str[i];
-            p->flags = mx_strjoin(p->flags, buf);
+            
+            flags_buf = mx_strjoin(p->flags,buf);
+            mx_strdel(&p->flags);
+
+            p->flags = mx_strdup(flags_buf);
+            mx_strdel(&flags_buf);
         }
     }
 }
 
-int mx_parse_input(int argc, char **argv, t_parse *p) {
+void mx_parse_input(int argc, char **argv, t_parse *p) {
     int i = 0;
     int j = 0;
     int k = 0;
@@ -28,14 +32,6 @@ int mx_parse_input(int argc, char **argv, t_parse *p) {
             pick_unique_flags(argv[j], p);
         }
     }
-    /*mx_printstr("\n ==== check ===== \n");
-    mx_printstr("argc: ");
-    mx_printint(argc);
-    mx_printstr("\nj: ");
-    mx_printint(j);
-    mx_printstr("\n argc - j: ");
-    mx_printint((argc-j));
-    mx_printstr("\n==================\n\n");*/
     p->addresses = (char**)malloc(sizeof(char*) * (argc - j + 1));
     for (i = 0; i <= (argc - j + 1); i++) {
         p->addresses[i] = NULL;
@@ -43,6 +39,5 @@ int mx_parse_input(int argc, char **argv, t_parse *p) {
     for(; j < argc; j++) {
         p->addresses[k++] = mx_strdup(argv[j]);
     }
-    p->addresses[k++] = mx_strnew(1); // need to additional free
-    return 0;
+    p->addresses[k++] = mx_strnew(1); // need to additional free 
 }

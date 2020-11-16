@@ -1,6 +1,6 @@
 #include "uls.h"
 
-int list_longdir(const char *path) {
+void list_longdir(const char *path) {
     DIR *dr;
     struct dirent *fl;
     struct stat forstat;
@@ -54,5 +54,5 @@ int list_longdir(const char *path) {
         //mx_printstr(fl->d_name);
     }
     closedir(dr);
-    return 0;
+    // return 0;
 }

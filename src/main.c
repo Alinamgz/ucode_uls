@@ -13,6 +13,7 @@ int main(int argc, char **argv) {
     }
     else
         mx_parse_input(argc, argv, parse);
+        mx_validate_flags(parse);
 
     /*if (parse->flags) {
         mx_printstr("\n\n=========== flags ==============\n");
@@ -26,9 +27,9 @@ int main(int argc, char **argv) {
         }
         mx_printstr("\n\n");
     }*/
-    //system("leaks -q  uls");
 
     output_ls(parse);
-
+mx_printstr("\n\n--------------------------------------\n");
+    system("leaks -q  uls");
     return 0;
 }
