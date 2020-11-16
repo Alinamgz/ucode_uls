@@ -19,9 +19,10 @@ int main(int argc, char **argv) {
             mx_printchar('\t');
             mx_printstr(parse->addresses[i]);
         }
+        mx_printstr("\n\n");
 
     }
-mx_printstr("\ncheck\n");
+    system("leaks -q  uls");
 
     return 0;
 }
