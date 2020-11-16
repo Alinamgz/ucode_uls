@@ -23,8 +23,11 @@ static inline void pick_unique_flags(const char *str, t_parse *p) {
 }
 
 void mx_parse_input(int argc, char **argv, t_parse *p) {
+
+//  TODO: fix dit kak
+
     int i = 0;
-    int j = 0;
+    int j = 1;
     int k = 0;
 
     if (is_flag(argv[1])) {
@@ -32,12 +35,13 @@ void mx_parse_input(int argc, char **argv, t_parse *p) {
             pick_unique_flags(argv[j], p);
         }
     }
-    p->addresses = (char**)malloc(sizeof(char*) * (argc - j + 1));
-    for (i = 0; i <= (argc - j + 1); i++) {
+    p->addresses = (char**)malloc(sizeof(char*) * (argc - j + 2));
+    for (i = 0; i <= (argc - j + 2); i++) {
         p->addresses[i] = NULL;
     }
     for(; j < argc; j++) {
         p->addresses[k++] = mx_strdup(argv[j]);
     }
-    p->addresses[k++] = mx_strnew(1); // need to additional free 
+        p->addresses[k++] = mx_strnew(1); // need to additional free 
+    p->right = j + 2;
 }

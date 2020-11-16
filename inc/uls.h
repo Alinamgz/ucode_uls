@@ -25,6 +25,7 @@
 
 // ====== structs ======
 typedef struct s_parce {
+    int right;
     char *flags;
     char *target;
     char **addresses;
@@ -41,7 +42,7 @@ typedef struct s_parce {
 void mx_init_parsing (t_parse *p);
 void mx_parse_input(int argc, char **argv, t_parse *p);
 void mx_validate_flags(t_parse *p);
-void mx_validate_addr(t_parse *p);
+void mx_sort_addr(t_parse *p);
 
 void list_directory(char *path);
 void output_ls(t_parse *p);
