@@ -6,4 +6,4 @@ os: osx
 
 compiler: clang
 
-srctipt: make
+script: make
