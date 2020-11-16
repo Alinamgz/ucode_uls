@@ -26,20 +26,22 @@
 // ====== structs ======
 typedef struct s_parce {
     char *flags;
+    char *target;
     char **addresses;
     char **files;
     char **dirs;
-    char *target;
-}               t_parse;
+    char **ivalid_addr;
+}              t_parse;
 
 // ======= funcs =======
 // int mx_parse_input(int argc, char **argv, t_parse *p);
 // int list_directory(char *path);
 // int output_ls(t_parse *p);
 // int list_longdir(const char *path);
-
+void mx_init_parsing (t_parse *p);
 void mx_parse_input(int argc, char **argv, t_parse *p);
 void mx_validate_flags(t_parse *p);
+void mx_validate_addr(t_parse *p);
 
 void list_directory(char *path);
 void output_ls(t_parse *p);
