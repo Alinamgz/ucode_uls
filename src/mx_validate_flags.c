@@ -9,7 +9,7 @@ void mx_validate_flags(t_parse *p) {
 
         if (VALID_FLAGS)  {
             is_valid = mx_get_char_index(VALID_FLAGS, p->flags[i]);
-            is_dependent = mx_get_char_index(DEPENDENT_FLAGS, p->flags[i]);
+            is_dependent = mx_get_char_index(L_FLAGS, p->flags[i]);
 
             if (is_valid < 0 && is_dependent < 0) {
                 buf[0] = p->flags[i];

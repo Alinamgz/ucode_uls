@@ -16,6 +16,9 @@ int main(int argc, char **argv) {
         if (parse->flags) {
             mx_validate_flags(parse);
         }
+        mx_printchar('\n');
+        mx_printstr(parse->flags);
+
 
 //         if (parse->addresses) {
 // //  ---------- check ------------

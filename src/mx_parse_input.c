@@ -1,5 +1,6 @@
 #include "uls.h"
 
+// TODO: en dit kak ook
 static inline bool is_flag(const char *str) {
     bool rslt = str[0] == '-' && (mx_strlen(str) > 1) ? 1 : 0;
     return rslt;
@@ -33,6 +34,7 @@ void mx_parse_input(int argc, char **argv, t_parse *p) {
 
     if (is_flag(argv[1])) {
         for(j = 1; j < argc && is_flag(argv[j]); j++) {
+            // TODO pick flags assotiated with -l
             pick_unique_flags(argv[j], p);
         }
     }

@@ -2,7 +2,7 @@
 
 // ====== defines ======
 #define VALID_FLAGS "l"
-#define DEPENDENT_FLAGS "h@eT"
+#define L_FLAGS "h@eT"
 
 // ---- error msg -------
 #define ILLEGAL_OPTION "uls: illegal option -- "
@@ -28,6 +28,7 @@
 typedef struct s_parce {
     int right;
     char *flags;
+    char *l_flags;
     char *target;
     char **addresses;
     char **files;
