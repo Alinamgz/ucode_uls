@@ -6,7 +6,7 @@ static inline bool is_flag(const char *str) {
 }
 
 static inline void pick_unique_flags(const char *str, t_parse *p) {
-    char buf[2] = {'\0', '\0'};
+    char *buf = mx_strnew(1);
     char *flags_buf = NULL;
 
     for (int i = 1; str[i]; i++) {
@@ -20,6 +20,7 @@ static inline void pick_unique_flags(const char *str, t_parse *p) {
             mx_strdel(&flags_buf);
         }
     }
+            mx_strdel(&buf);
 }
 
 void mx_parse_input(int argc, char **argv, t_parse *p) {
@@ -35,6 +36,7 @@ void mx_parse_input(int argc, char **argv, t_parse *p) {
             pick_unique_flags(argv[j], p);
         }
     }
+
     p->addresses = (char**)malloc(sizeof(char*) * (argc - j + 2));
     for (i = 0; i <= (argc - j + 2); i++) {
         p->addresses[i] = NULL;
