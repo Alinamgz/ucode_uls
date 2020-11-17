@@ -2,6 +2,7 @@
 
 // ====== defines ======
 #define VALID_FLAGS "l"
+#define DEPENDENT_FLAGS "h@eT"
 
 // ---- error msg -------
 #define ILLEGAL_OPTION "uls: illegal option -- "

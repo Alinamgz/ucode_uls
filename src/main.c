@@ -16,27 +16,27 @@ int main(int argc, char **argv) {
             mx_validate_flags(parse);
         }
 
-        if (parse->addresses) {
-//  ---------- check ------------
-mx_printstr("\n---------------- BEF ---------------\n");
-for (int i = 0; parse->addresses[i]; i++) {
-    mx_printchar('\t');
-    mx_printstr(parse->addresses[i]);
-}
-mx_printstr("\n\n --- sorting... ---\n");
-// ---------------------------------
-            mx_sort_addr(parse);
-//  ---------- check ------------
-mx_printstr("\n---------------- AFT ---------------\n");
-for (int i = 0; parse->addresses[i]; i++) {
-    mx_printchar('\t');
-    mx_printstr(parse->addresses[i]);
-}
-mx_printstr("\n\n --- -------- ---\n");
-// ---------------------------------
-        }
+//         if (parse->addresses) {
+// //  ---------- check ------------
+// mx_printstr("\n---------------- BEF ---------------\n");
+// for (int i = 0; parse->addresses[i]; i++) {
+//     mx_printchar('\t');
+//     mx_printstr(parse->addresses[i]);
+// }
+// mx_printstr("\n\n --- sorting... ---\n");
+// // ---------------------------------
+//             mx_sort_addr(parse);
+// //  ---------- check ------------
+// mx_printstr("\n---------------- AFT ---------------\n");
+// for (int i = 0; parse->addresses[i]; i++) {
+//     mx_printchar('\t');
+//     mx_printstr(parse->addresses[i]);
+// }
+// mx_printstr("\n\n --- -------- ---\n");
+// // ---------------------------------
+//         }
 
-        // output_ls(parse);
+        output_ls(parse);
     }
     mx_printstr("\n\n------------------ main --------------------\n");
     system("leaks -q  uls");
