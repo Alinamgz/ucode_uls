@@ -28,6 +28,7 @@
 typedef struct s_parce {
     int right;
     char *flags;
+    bool *flags_state;
     char *l_flags;
     char *target;
     char **addresses;
@@ -45,6 +46,8 @@ void mx_init_parsing (t_parse *p);
 void mx_parse_input(int argc, char **argv, t_parse *p);
 void mx_validate_flags(t_parse *p);
 void mx_sort_addr(t_parse *p);
+int mx_parse_flags(int argc, char **argv, t_parse *p);
+void mx_parse_addresses(int i, int argc, char **argv, t_parse *p);
 
 void list_directory(char *path);
 void output_ls(t_parse *p);
