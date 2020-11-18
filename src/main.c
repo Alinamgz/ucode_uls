@@ -14,10 +14,10 @@ int main(int argc, char **argv) {
         parse = (t_parse *)malloc(sizeof(t_parse));
         mx_init_parsing(parse);
         mx_parse_input(argc, argv, parse);
-                
+        
         output_ls(parse, direct);
     }
-    //mx_printstr("\n\n------------------ main --------------------\n");
-    //system("leaks -q  uls");
+    // mx_printstr("\n\n------------------ main --------------------\n");
+    // system("leaks -q  uls");
     return 0;
 }

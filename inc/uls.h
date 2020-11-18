@@ -49,10 +49,10 @@ typedef struct s_direct {
 // int list_longdir(const char *path);
 void mx_init_parsing (t_parse *p);
 void mx_parse_input(int argc, char **argv, t_parse *p);
-void mx_validate_flags(t_parse *p);
-void mx_sort_addr(t_parse *p);
 int mx_parse_flags(int argc, char **argv, t_parse *p);
 void mx_parse_addresses(int i, int argc, char **argv, t_parse *p);
+void mx_sort_alphabetically(char **arr, int left, int right);
+
 
 void list_directory(t_direct *direct);
 void output_ls(t_parse *p, t_direct *direct);
