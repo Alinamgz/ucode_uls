@@ -1,17 +1,17 @@
 #include "uls.h"
 
-void list_directory(char *path) {
-    struct dirent *de;
+static void column_output(t_direct *direct) {
+    for (int i = 0; i < direct->count_of_objects; i++) {
+        mx_printstr(direct->content_of_directory[i]);
+        mx_printchar('\n');
+    }
+}
 
-    DIR *dr = opendir(path); 
-    if (dr == NULL) { 
-        mx_printstr("Could not open current directory"); 
-        return; 
-    } 
-    while ((de = readdir(dr)) != NULL) {
-            mx_printstr(de->d_name);
-            mx_printchar('\t');
-        }
-    closedir(dr); 
-    return;    
+void list_directory(t_direct *direct) {
+    lexicographical_sort(direct);
+    if (isatty(1))
+        line_output(direct);
+    else
+        column_output(direct);
+    return;
 }
