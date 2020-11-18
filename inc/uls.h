@@ -22,6 +22,8 @@
 #include <pwd.h>
 #include <grp.h>
 #include <stdbool.h>
+#include <termios.h>
+#include <sys/ioctl.h>
 #include "libmx.h"
 
 // ====== structs ======
@@ -37,6 +39,11 @@ typedef struct s_parce {
     char **ivalid_addr;
 }              t_parse;
 
+typedef struct s_direct {
+    char **content_of_directory;
+    int count_of_objects;
+}              t_direct;
+
 // ======= funcs =======
 // int mx_parse_input(int argc, char **argv, t_parse *p);
 // int list_directory(char *path);
@@ -49,6 +56,11 @@ void mx_sort_addr(t_parse *p);
 int mx_parse_flags(int argc, char **argv, t_parse *p);
 void mx_parse_addresses(int i, int argc, char **argv, t_parse *p);
 
-void list_directory(char *path);
-void output_ls(t_parse *p);
+void list_directory(t_direct *direct);
+void output_ls(t_parse *p, t_direct *direct);
 void list_longdir(const char *path);
+int directory_info(t_direct *direct);
+void print_in_line(t_direct *direct, int first_ln);
+void line_output(t_direct *direct);
+void lexicographical_sort(t_direct *direct);
+void print_in_multiline(t_direct *direct, int first_ln, struct winsize size_wind);

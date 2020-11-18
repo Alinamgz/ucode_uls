@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void output_ls(t_parse *p) {
+void output_ls(t_parse *p, t_direct *direct) {
     char current_path[] = ".";
     char *path = current_path;
 
@@ -13,7 +13,7 @@ void output_ls(t_parse *p) {
             mx_printstr(p->addresses[i]);
             mx_printstr(":\n");
             path = p->addresses[i];
-            list_directory(path);
+            list_directory(direct);
             if (p->addresses[i + 1][0] != '\0')
                 mx_printchar('\n');
         }
