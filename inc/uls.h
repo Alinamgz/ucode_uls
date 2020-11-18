@@ -28,10 +28,8 @@
 
 // ====== structs ======
 typedef struct s_parce {
-    int right;
     char *flags;
     bool *flags_state;
-    char *l_flags;
     char *target;
     char **addresses;
     char **files;
