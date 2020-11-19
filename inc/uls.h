@@ -34,7 +34,7 @@ typedef struct s_parce {
     char **addresses;
     char **files;
     char **dirs;
-    char **ivalid_addr;
+    char **invalid;
 }              t_parse;
 
 typedef struct s_direct {
@@ -52,6 +52,7 @@ void mx_parse_input(int argc, char **argv, t_parse *p);
 int mx_parse_flags(int argc, char **argv, t_parse *p);
 void mx_parse_addresses(int i, int argc, char **argv, t_parse *p);
 void mx_sort_alphabetically(char **arr, int left, int right);
+void mx_sort_addresses (t_parse *p, int size);
 
 
 void list_directory(t_direct *direct);
