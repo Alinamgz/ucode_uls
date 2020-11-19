@@ -16,32 +16,27 @@ static inline bool is_dir(const char *addr) {
     return rslt;
 }
 
-void mx_sort_addresses(t_parse *p, int size) {
-    int inv = 0;
+void mx_sort_addresses(t_parse *p) {
     int d = 0;
     int f = 0;
     int i = 0;
+    int j = 0;
 
-    p->invalid = (char**)malloc(sizeof(char*) * size);
-    p->dirs = (char**)malloc(sizeof(char*) * size);
-    p->files = (char**)malloc(sizeof(char*) * size);
-
-    for (i = 0; i < size; i++) {
-        p->invalid[i] = NULL;
-        p->dirs[i] = NULL;
-        p->files[i] = NULL;
-    }
-
-if (p) mx_printstr("todo sort\n");
-    for (i = 0; p->addresses[i]; i++) {
-        if (is_dir(p->addresses[i])) {
-            p->dirs[d++] = mx_strdup(p->addresses[i]);
+    for (j = 0; p->addresses[j]; j++) {
+        if (is_dir(p->addresses[j])) {
+            p->dirs = (char**)mx_realloc(p->dirs, sizeof(char*) * 2 + d);
+            p->dirs[d++] = mx_strdup(p->addresses[j]);
+            p->dirs[d] = NULL;
         }
-        else if (is_file(p->addresses[i])) {
-            p->files[f++] = mx_strdup(p->addresses[i]);
+        else if (is_file(p->addresses[j])) {
+            p->files = (char**)mx_realloc(p->files, sizeof(char*) * 2 + f);
+            p->files[f++] = mx_strdup(p->addresses[j]);
+            p->files[f] = NULL;
         }
         else {
-            p->invalid[inv++] = mx_strdup(p->addresses[i]);
+            p->invalid = (char**)mx_realloc(p->invalid, sizeof(char*) * 2 + i);
+            p->invalid[i++] = mx_strdup(p->addresses[j]);
+            p->invalid[i] = NULL;
         }
     }
     mx_del_strarr(&p->addresses);
