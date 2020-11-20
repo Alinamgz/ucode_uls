@@ -26,7 +26,7 @@ static inline void pick_unique_flags(const char *str, t_parse *p) {
 			flags_error(buf);
 		}
 		else {
-			//TODO: mb have to rewrite flags_state after adding l-dependent flags
+//TODO: mb have to rewrite flags_state after adding l-dependent flags
 			mx_strcat(p->flags, buf);
 			p->flags_state[is_valid] = 1;
 		}

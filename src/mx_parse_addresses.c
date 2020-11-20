@@ -9,6 +9,6 @@ void mx_parse_addresses(int i, int argc, char **argv, t_parse *p) {
 		p->addresses[j] = mx_strdup(argv[i + j]);
 	}
 	p->addresses[j] = NULL;
-	mx_sort_alphabetically(p->addresses, 0, j-1);
-	mx_sort_addresses(p);
+
+	mx_sort_addresses(p, j);
 }

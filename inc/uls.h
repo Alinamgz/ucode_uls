@@ -1,7 +1,7 @@
 #pragma once
 
 // ====== defines ======
-#define VALID_FLAGS "l"
+#define VALID_FLAGS "lr"
 #define L_FLAGS "h@eT"
 
 // ---- error msg -------
@@ -37,6 +37,14 @@ typedef struct s_parce {
     char **invalid;
 }              t_parse;
 
+typedef struct s_sort {
+    int d;
+    int f;
+    int i;
+    int j;
+    char *addr_sort;
+}              t_sort;
+
 typedef struct s_direct {
     char **content_of_directory;
     int count_of_objects;
@@ -51,8 +59,8 @@ void mx_init_parsing (t_parse *p);
 void mx_parse_input(int argc, char **argv, t_parse *p);
 int mx_parse_flags(int argc, char **argv, t_parse *p);
 void mx_parse_addresses(int i, int argc, char **argv, t_parse *p);
-void mx_sort_alphabetically(char **arr, int left, int right);
-void mx_sort_addresses (t_parse *);
+void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
+void mx_sort_addresses (t_parse *, int size);
 
 
 void list_directory(t_direct *direct);
