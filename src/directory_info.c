@@ -10,27 +10,21 @@ static int pull_names (t_parse *p, char *path, t_flags *f) {
         mx_printstr("Could not open current directory"); // write in errno format 
         return 0; 
     }
-
-    // while ((de = readdir(dr)) != NULL)
-    //     if (de->d_name[0] != '.') {
-    //         p->content_of_directory[k] = mx_strdup(de->d_name);
-    //         k++;
-    //     }
     
     if (f->lg_A) {
         while ((de = readdir(dr)) != NULL)
             if (mx_strcmp(de->d_name, ".") && mx_strcmp(de->d_name, ".."))
-            p->content_of_directory[k++] = mx_strdup(de->d_name);
-            k++;    }
+                p->content_of_directory[k++] = mx_strdup(de->d_name);
+        }
     else if (f->lg_a) {
         while ((de = readdir(dr)) != NULL)
-            p->content_of_directory[k++] = mx_strdup(de->d_name);
-            k++;    }
+                p->content_of_directory[k++] = mx_strdup(de->d_name);
+        }
     else {
         while ((de = readdir(dr)) != NULL)
             if (de->d_name[0] != '.')
-            p->content_of_directory[k++] = mx_strdup(de->d_name);
-            k++;    }
+                p->content_of_directory[k++] = mx_strdup(de->d_name);
+        }
 
     lexicographical_sort(p);
     closedir(dr);
@@ -60,7 +54,6 @@ int directory_info(t_parse *p, char *path, t_flags *f) {
             if (de->d_name[0] != '.')
                 p->count_of_objects++;
     }
-
     
     closedir(dr);
     pull_names(p, path, f);
