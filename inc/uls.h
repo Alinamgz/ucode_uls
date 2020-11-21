@@ -73,7 +73,7 @@ void mx_parse_addresses(int i, int argc, char **argv, t_parse *p, t_flags *f);
 void mx_sort_addresses (t_parse *, t_flags *f, int size);
 void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
 void mx_switch_flags(char *flags, t_flags *f);
-
+void mx_output_invalid_addr(char **invalid);
 
 
 void list_directory(t_parse *p, char *path, t_flags *f);
