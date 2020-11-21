@@ -53,5 +53,3 @@ int mx_parse_flags(int argc, char **argv, t_parse *p) {
 	}
 	return i;
 }
-
-

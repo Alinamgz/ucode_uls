@@ -55,6 +55,7 @@ static inline void fill_addr_arrays(t_parse *p, t_sort *s) {
         else if (s->addr_sort[s->j] == 'f') {
             p->files[s->f++] = mx_strdup(p->addresses[s->j]);
             p->files[s->f] = NULL;
+            p->count_of_files++;
         }
         else if (s->addr_sort[s->j] == 'i'){
             p->invalid[s->i++] = mx_strdup(p->addresses[s->j]);

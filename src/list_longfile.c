@@ -1,21 +1,20 @@
 #include "uls.h"
 
-void list_longdir(char *path, t_forlong *forlong, t_parse *p) {
+void list_longfile(t_forlong *forlong, t_parse *p) {
     forlong = (t_forlong *)malloc(sizeof(t_forlong));
     struct stat forstat;
     struct passwd *foruserid;
     struct group *forgroupid;
+    //directory_info(p, path);
+    for (int i = 0; i < p->count_of_files; i++) {
+            count_maxlen_files(p, forlong);
+            stat(p->files[i], &forstat);
 
-    directory_info(p, path);
-    for (int i = 0; i < p->count_of_objects; i++) {
-            count_max_len(p, forlong);
-            stat(p->content_of_directory[i], &forstat);
-
-            if (i == 0) {
+            /*if (i == 0) {
                 mx_printstr("total ");
                 mx_printint(forlong->max_len[4]);
                 mx_printchar('\n');
-            }
+            }*/
 
             switch (forstat.st_mode & S_IFMT) {
                 case S_IFBLK:  mx_printstr("b"); break;
@@ -37,7 +36,7 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p) {
             (forstat.st_mode & S_IWOTH) ? mx_printstr("w") : mx_printstr("-");
             (forstat.st_mode & S_IXOTH) ? mx_printstr("x") : mx_printstr("-");
 
-            mx_get_acl_xattr(p->content_of_directory[i]);
+            mx_get_acl_xattr(p->files[i]);
 
             mx_printchar(' ');
             print_lnumber(forstat.st_nlink, forlong->max_len[0]);
@@ -59,7 +58,7 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p) {
             print_time(forstat);
  
             mx_printchar(' ');
-            mx_printstr(p->content_of_directory[i]);
+            mx_printstr(p->files[i]);
             mx_printstr("\n");
     }
 }
