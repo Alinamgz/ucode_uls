@@ -64,18 +64,17 @@ static inline void fill_addr_arrays(t_parse *p, t_sort *s) {
     }
 }
 
-void mx_sort_addresses(t_parse *p, int size) {
+void mx_sort_addresses(t_parse *p, t_flags *f, int size) {
     t_sort s = {0, 0, 0, 0, mx_strnew(size)};
-    bool r_flag = p->flags_state[mx_get_char_index(VALID_FLAGS, 'r')];
 
     pre_sorting(p, &s);
     init_addr_arrays(p, &s);
     fill_addr_arrays(p, &s);
 
     if (p->dirs)
-         mx_sort_alphabetically(p->dirs, 0, (s.d - 1), r_flag);
+         mx_sort_alphabetically(p->dirs, 0, (s.d - 1), f->lg_r);
     if (p->files)
-        mx_sort_alphabetically(p->files, 0, (s.f - 1), r_flag);
+        mx_sort_alphabetically(p->files, 0, (s.f - 1), f->lg_r);
     if (p->invalid)
         mx_sort_alphabetically(p->invalid, 0, (s.i - 1), 0);
 

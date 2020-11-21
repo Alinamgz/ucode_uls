@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_parse_addresses(int i, int argc, char **argv, t_parse *p) {
+void mx_parse_addresses(int i, int argc, char **argv, t_parse *p, t_flags *f) {
 	int adr_size = argc - i;
 	int j = 0;
 
@@ -10,5 +10,5 @@ void mx_parse_addresses(int i, int argc, char **argv, t_parse *p) {
 	}
 	p->addresses[j] = NULL;
 
-	mx_sort_addresses(p, j);
+	mx_sort_addresses(p, f, j);
 }

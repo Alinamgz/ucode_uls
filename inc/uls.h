@@ -1,7 +1,7 @@
 #pragma once
 
 // ====== defines ======
-#define VALID_FLAGS "lr"
+#define VALID_FLAGS "Aalr"
 #define L_FLAGS "h@eT"
 
 // ---- error msg -------
@@ -30,7 +30,7 @@
 
 // ====== structs ======
 typedef struct s_parce {
-    bool *flags_state;
+    // bool *flags_state;
     char *flags;
     char *target;
     char **addresses;
@@ -50,6 +50,13 @@ typedef struct s_sort {
     char *addr_sort;
 }              t_sort;
 
+typedef struct s_flags {
+    bool lg_A;
+    bool lg_a;
+    bool lg_l;
+    bool lg_r;
+}              t_flags;
+
 typedef struct s_forlong {
     int *max_len;
 }              t_forlong;
@@ -60,29 +67,31 @@ typedef struct s_forlong {
 // int output_ls(t_parse *p);
 // int list_longdir(const char *path);
 void mx_init_parsing (t_parse *p);
-void mx_parse_input(int argc, char **argv, t_parse *p);
+void mx_parse_input(int argc, char **argv, t_parse *p, t_flags *f);
 int mx_parse_flags(int argc, char **argv, t_parse *p);
-void mx_parse_addresses(int i, int argc, char **argv, t_parse *p);
+void mx_parse_addresses(int i, int argc, char **argv, t_parse *p, t_flags *f);
+void mx_sort_addresses (t_parse *, t_flags *f, int size);
 void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
-void mx_sort_addresses (t_parse *, int size);
+void mx_switch_flags(char *flags, t_flags *f);
 
 
-void list_directory(t_parse *p, char *path);
-void output_ls(t_parse *p, char *path);
-void list_longdir(char *path, t_forlong *forlong, t_parse *p);
-int directory_info(t_parse *p, char *path);
+
+void list_directory(t_parse *p, char *path, t_flags *f);
+void output_ls(t_parse *p, char *path, t_flags *f);
+void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
+int directory_info(t_parse *p, char *path, t_flags *f);
 void print_in_line(t_parse *p, int first_ln);
 void line_output(t_parse *p);
 void lexicographical_sort(t_parse *p);
 void print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind);
-void list_few_filedirs(t_parse *p, char *path);
-void mx_sort_addresses(t_parse *p, int j);
+void list_few_filedirs(t_parse *p, char *path, t_flags *f);
+// void mx_sort_addresses(t_parse *p, int j);
 void list_files(t_parse *p);
 void count_max_len(t_parse *p, t_forlong *forlong);
 void print_lnumber(int value, int max_len);
 void print_time(struct stat forstat);
 void mx_get_acl_xattr(char *path);
 void print_lname(char *name, int max_len);
-void list_few_longdirs(char *path, t_forlong *forlong, t_parse *p);
+void list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
 void list_longfile(t_forlong *forlong, t_parse *p);
 void count_maxlen_files(t_parse *p, t_forlong *forlong);

@@ -4,16 +4,17 @@
 
 int main(int argc, char **argv) {
     t_parse *parse = (t_parse *)malloc(sizeof(t_parse));
+    t_flags flags = {0};
     char current_path[] = ".";
     char *path = current_path;
 
     if (argc == 1) {
-        list_directory(parse, path);
+        list_directory(parse, path, &flags);
         return 0;
     } else {
         mx_init_parsing(parse);
-        mx_parse_input(argc, argv, parse);
-        output_ls(parse, path);
+        mx_parse_input(argc, argv, parse, &flags);
+        output_ls(parse, path, &flags);
     }
     // mx_printstr("\n\n------------------ main --------------------\n");
     // system("leaks -q  uls");

@@ -2,7 +2,7 @@
 
 void mx_init_parsing (t_parse *p) {
     p->flags = NULL;
-    p->flags_state = NULL;
+    // p->flags_state = NULL;
     p->target = NULL;
     p->addresses = NULL;
     p->files = NULL;

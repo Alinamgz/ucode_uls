@@ -1,6 +1,6 @@
 #include "uls.h"
 
-static int pull_names (t_parse *p, char *path) {
+static int pull_names (t_parse *p, char *path, t_flags *f) {
     struct dirent *de;
     int k = 0;
 
@@ -10,17 +10,34 @@ static int pull_names (t_parse *p, char *path) {
         mx_printstr("Could not open current directory"); // write in errno format 
         return 0; 
     }
-    while ((de = readdir(dr)) != NULL)
-        if (de->d_name[0] != '.') {
-            p->content_of_directory[k] = mx_strdup(de->d_name);
-            k++;
-        }
+
+    // while ((de = readdir(dr)) != NULL)
+    //     if (de->d_name[0] != '.') {
+    //         p->content_of_directory[k] = mx_strdup(de->d_name);
+    //         k++;
+    //     }
+    
+    if (f->lg_A) {
+        while ((de = readdir(dr)) != NULL)
+            if (mx_strcmp(de->d_name, ".") && mx_strcmp(de->d_name, ".."))
+            p->content_of_directory[k++] = mx_strdup(de->d_name);
+            k++;    }
+    else if (f->lg_a) {
+        while ((de = readdir(dr)) != NULL)
+            p->content_of_directory[k++] = mx_strdup(de->d_name);
+            k++;    }
+    else {
+        while ((de = readdir(dr)) != NULL)
+            if (de->d_name[0] != '.')
+            p->content_of_directory[k++] = mx_strdup(de->d_name);
+            k++;    }
+
     lexicographical_sort(p);
     closedir(dr);
     return 0;
 }
 
-int directory_info(t_parse *p, char *path) {
+int directory_info(t_parse *p, char *path, t_flags *f) {
     struct dirent *de;
     
     DIR *dr = opendir(path);
@@ -28,10 +45,24 @@ int directory_info(t_parse *p, char *path) {
         mx_printstr("Could not open current directory"); // write in errno format 
         return 0; 
     }
-    while ((de = readdir(dr)) != NULL)
-        if (de->d_name[0] != '.')
-            p->count_of_objects++;
+
+    if (f->lg_A) {
+        while ((de = readdir(dr)) != NULL)
+            if (mx_strcmp(de->d_name, ".") && mx_strcmp(de->d_name, ".."))
+                p->count_of_objects++;
+    }
+    else if (f->lg_a) {
+        while ((de = readdir(dr)) != NULL)
+                p->count_of_objects++;
+    }
+    else {
+        while ((de = readdir(dr)) != NULL)
+            if (de->d_name[0] != '.')
+                p->count_of_objects++;
+    }
+
+    
     closedir(dr);
-    pull_names(p, path);
+    pull_names(p, path, f);
     return 0;
 }

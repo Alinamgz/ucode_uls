@@ -26,12 +26,17 @@ static inline void pick_unique_flags(const char *str, t_parse *p) {
 			flags_error(buf);
 		}
 		else {
-//TODO: mb have to rewrite flags_state after adding l-dependent flags
 			mx_strcat(p->flags, buf);
-			p->flags_state[is_valid] = 1;
 		}
 	}
 }
+
+// static inline void check_flags(char *flags, bool *flags_state) {
+	
+// 	if (mx_get_char_index(flags, 'a') >= 0) {
+// 		flags_state[mx_get_char_index(VALID_FLAGS, 'A')] = 0;
+// 	}
+// }
 
 int mx_parse_flags(int argc, char **argv, t_parse *p) {
 	int i = 0;
@@ -39,11 +44,11 @@ int mx_parse_flags(int argc, char **argv, t_parse *p) {
 	f_len += mx_strlen(L_FLAGS);
 
 	p->flags = mx_strnew(f_len);
-	p->flags_state = (bool*)malloc(sizeof(bool) * f_len);
+	// p->flags_state = (bool*)malloc(sizeof(bool) * f_len);
 
-	for(i = 0; i < f_len; i++) {
-		p->flags_state[i] = 0;
-	}
+	// for(i = 0; i < f_len; i++) {
+	// 	p->flags_state[i] = 0;
+	// }
 
 	for (i = 1; i < argc; i++) {
 		if (argv[i][0] != '-'  || !argv[i][1]) {
@@ -51,5 +56,7 @@ int mx_parse_flags(int argc, char **argv, t_parse *p) {
 		}
 		pick_unique_flags (argv[i], p);
 	}
+	// check_flags(p->flags, p->flags_state);
+
 	return i;
 }

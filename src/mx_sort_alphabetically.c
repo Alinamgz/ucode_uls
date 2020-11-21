@@ -29,12 +29,12 @@ static inline void sort_descending(char **arr, t_sort *s, int left, int right){
     }
 }
 
-void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag) {
+void mx_sort_alphabetically(char **arr, int left, int right, bool flag_r) {
     t_sort s = {0, left, left, right, NULL};
 
     if(left < right) {
         while (s.i < s.j) {
-            if (r_flag){
+            if (flag_r){
                 sort_descending(arr, &s, left, right);
             }
             else {
@@ -43,7 +43,7 @@ void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag) {
         }
         swap_strings(arr, s.j, s.f);
 
-        mx_sort_alphabetically(arr, left, s.j - 1, r_flag);
-        mx_sort_alphabetically(arr, s.j + 1, right, r_flag);
+        mx_sort_alphabetically(arr, left, s.j - 1, flag_r);
+        mx_sort_alphabetically(arr, s.j + 1, right, flag_r);
     }
 }
