@@ -7,13 +7,16 @@ static void column_output(t_parse *p) {
     }
 }
 
-void list_directory(t_parse *p, char *path) {
-    directory_info(p, path);
+void list_files(t_parse *p) {
+    p->content_of_directory = p->files;
+    p->count_of_objects = p->count_of_files;
+
     if (isatty(1)) {
         line_output(p);
     }
     else
         column_output(p);
+        
     p->content_of_directory = NULL;
     p->count_of_objects = 0;
     return;

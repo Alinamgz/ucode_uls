@@ -7,5 +7,6 @@ void mx_parse_input(int argc, char **argv, t_parse *p) {
 
     if(argv[index]) {
         mx_parse_addresses(index, argc, argv, p);
+        mx_sort_addresses(p);
     }
 }

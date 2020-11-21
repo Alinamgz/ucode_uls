@@ -166,3 +166,4 @@ unsigned long mx_mod(int num);
 void mx_only_printable(void);
 void mx_print_arr_int(const int *arr, int size);
 void mx_printerr(const char *s);
+int mx_intlen(int n);

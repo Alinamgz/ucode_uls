@@ -8,4 +8,5 @@ void mx_init_parsing (t_parse *p) {
     p->files = NULL;
     p->dirs = NULL;
     p->ivalid_addr = NULL;
+    p->content_of_directory = NULL;
 }
