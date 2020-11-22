@@ -26,9 +26,9 @@ static int pull_names (t_parse *p, char *path, t_flags *f) {
                 p->content_of_directory[k++] = mx_strdup(de->d_name);
         }
     }
-
-    mx_sort_alphabetically(p->content_of_directory, 0,
-                           p->count_of_objects - 1, f->lg_r);
+    if (!f->lg_f)
+        mx_sort_alphabetically(p->content_of_directory, 0,
+                               p->count_of_objects - 1, f->lg_r);
     closedir(dr);
     return 0;
 }
