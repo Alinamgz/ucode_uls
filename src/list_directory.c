@@ -9,7 +9,7 @@ static void column_output(t_parse *p) {
 
 void list_directory(t_parse *p, char *path, t_flags *f) {
     directory_info(p, path, f);
-    if (isatty(1)) {
+    if (isatty(1) && !f->lg_1) {
         line_output(p);
     }
     else

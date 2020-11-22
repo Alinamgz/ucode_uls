@@ -19,9 +19,14 @@ void mx_switch_flags(char *flags, t_flags *f) {
 				break;
 			case 'l':
 				f->lg_l = 1;
+				f->lg_1 = 0;
 				break;
 			case 'r':
 				f->lg_r = 1;
+				break;
+			case '1':
+					f->lg_1 = 1;
+					f->lg_l = 0;
 				break;
 			default:
 				break;

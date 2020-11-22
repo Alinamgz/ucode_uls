@@ -2,7 +2,7 @@
 
 void list_few_filedirs(t_parse *p, char *path, t_flags *f) {
     if (p->files) {
-        list_files(p);
+        list_files(p, f->lg_1);
         if (p->dirs)
             mx_printchar('\n');
     }

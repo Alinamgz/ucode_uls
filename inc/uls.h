@@ -1,7 +1,7 @@
 #pragma once
 
 // ====== defines ======
-#define VALID_FLAGS "Aaflr"
+#define VALID_FLAGS "Aaflr1"
 #define L_FLAGS "h@eT"
 
 // ---- error msg -------
@@ -57,6 +57,7 @@ typedef struct s_flags {
     bool lg_f;
     bool lg_l;
     bool lg_r;
+    bool lg_1;
 }              t_flags;
 
 typedef struct s_forlong {
@@ -88,7 +89,7 @@ void lexicographical_sort(t_parse *p);
 void print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind);
 void list_few_filedirs(t_parse *p, char *path, t_flags *f);
 // void mx_sort_addresses(t_parse *p, int j);
-void list_files(t_parse *p);
+void list_files(t_parse *p, bool flag_1);
 void count_max_len(t_parse *p, t_forlong *forlong);
 void print_lnumber(int value, int max_len);
 void print_time(struct stat forstat);
