@@ -36,7 +36,7 @@ void list_longfile(t_forlong *forlong, t_parse *p) {
             (forstat.st_mode & S_IWOTH) ? mx_printstr("w") : mx_printstr("-");
             (forstat.st_mode & S_IXOTH) ? mx_printstr("x") : mx_printstr("-");
 
-            mx_get_acl_xattr(p->files[i]);
+            mx_check_acl_and_attributes(p->files[i]);
 
             mx_printchar(' ');
             print_lnumber(forstat.st_nlink, forlong->max_len[0]);
