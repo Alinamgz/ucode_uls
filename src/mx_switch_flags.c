@@ -4,8 +4,7 @@ void mx_switch_flags(char *flags, t_flags *f) {
 	for (int i = 0; flags[i]; i++){
 		switch(flags[i]) {
 			case 'A':
-				if (!f->lg_a && !f->lg_f)
-					f->lg_A = 1;
+				f->lg_A = (!f->lg_a && !f->lg_f) ? 1 : 0;
 				break;
 			case 'G':
 				f->lg_G = 1;

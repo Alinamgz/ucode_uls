@@ -1,14 +1,16 @@
 #include "uls.h"
 
-void list_longfile(t_forlong *forlong, t_parse *p) {
+void list_longfile(t_forlong *forlong, t_parse *p, t_flags *f) {
     forlong = (t_forlong *)malloc(sizeof(t_forlong));
     struct stat forstat;
     struct passwd *foruserid;
     struct group *forgroupid;
+    char *link_target = NULL;
+
     //directory_info(p, path);
     for (int i = 0; i < p->count_of_files; i++) {
             count_maxlen_files(p, forlong);
-            stat(p->files[i], &forstat);
+            lstat(p->files[i], &forstat);
 
             /*if (i == 0) {
                 mx_printstr("total ");
@@ -56,9 +58,23 @@ void list_longfile(t_forlong *forlong, t_parse *p) {
 
             mx_printchar(' ');
             print_time(forstat);
- 
+
+
+            // mx_printchar(' ');
+            // mx_printstr(p->files[i]);
+            // mx_printstr("\n");
+
             mx_printchar(' ');
+            if (f->lg_G)
+                mx_colorize(forstat);
             mx_printstr(p->files[i]);
+            mx_printstr(RESET);
+            if ((forstat.st_mode & S_IFMT) == S_IFLNK) {
+                link_target = mx_strnew(BUF_SIZE);
+                readlink(p->files[i], link_target, BUF_SIZE - 1);
+                mx_printstr(" -> ");
+                mx_printstr(link_target);
+            }
             mx_printstr("\n");
     }
 }

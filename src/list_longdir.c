@@ -5,6 +5,7 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
     struct stat forstat;
     struct passwd *foruserid;
     struct group *forgroupid;
+    char *link_target = NULL;
 
     directory_info(p, path, f);
     for (int i = 0; i < p->count_of_objects; i++) {
@@ -63,6 +64,12 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
                 mx_colorize(forstat);
             mx_printstr(p->content_of_directory[i]);
             mx_printstr(RESET);
+            if ((forstat.st_mode & S_IFMT) == S_IFLNK) {
+                link_target = mx_strnew(64);
+                readlink(p->content_of_directory[i], link_target, 64);
+                mx_printstr(" -> ");
+                mx_printstr(link_target);
+            }
             mx_printstr("\n");
     }
 }

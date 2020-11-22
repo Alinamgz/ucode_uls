@@ -3,6 +3,7 @@
 // ====== defines ======
 #define VALID_FLAGS "AGaflr1"
 #define L_FLAGS "h@eT"
+#define BUF_SIZE 64
 
 // ---- error msg -------
 #define ILLEGAL_OPTION "uls: illegal option -- "
@@ -95,20 +96,20 @@ void list_directory(t_parse *p, char *path, t_flags *f);
 void output_ls(t_parse *p, char *path, t_flags *f);
 void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
 int directory_info(t_parse *p, char *path, t_flags *f);
-void print_in_line(t_parse *p, int first_ln);
-void line_output(t_parse *p);
+void print_in_line(t_parse *p, int first_ln, bool flag_G);
+void line_output(t_parse *p, bool flag_G);
 void lexicographical_sort(t_parse *p);
-void print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind);
+void print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind, bool flag_G);
 void list_few_filedirs(t_parse *p, char *path, t_flags *f);
 // void mx_sort_addresses(t_parse *p, int j);
-void list_files(t_parse *p, bool flag_1);
+void list_files(t_parse *p, bool flag_1, bool flag_G);
 void count_max_len(t_parse *p, t_forlong *forlong);
 void print_lnumber(int value, int max_len);
 void print_time(struct stat forstat);
 void mx_check_acl_and_attributes(char *path);
 void print_lname(char *name, int max_len);
 void list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
-void list_longfile(t_forlong *forlong, t_parse *p);
+void list_longfile(t_forlong *forlong, t_parse *p, t_flags *f);
 void count_maxlen_files(t_parse *p, t_forlong *forlong);
 void list_lmanylongdir2(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
 char *mx_fullpath(char *path, char *content);

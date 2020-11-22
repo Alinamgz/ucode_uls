@@ -2,7 +2,7 @@
 
 void list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
     if (p->files) {
-        list_longfile(forlong, p);
+        list_longfile(forlong, p, f);
         if (p->dirs)
             mx_printchar('\n');
     }
