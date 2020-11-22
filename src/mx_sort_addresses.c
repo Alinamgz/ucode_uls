@@ -72,11 +72,11 @@ void mx_sort_addresses(t_parse *p, t_flags *f, int size) {
     init_addr_arrays(p, &s);
     fill_addr_arrays(p, &s);
 
-    if (p->dirs)
+    if (p->dirs && !f->lg_f)
          mx_sort_alphabetically(p->dirs, 0, (s.d - 1), f->lg_r);
-    if (p->files)
+    if (p->files && !f->lg_f)
         mx_sort_alphabetically(p->files, 0, (s.f - 1), f->lg_r);
-    if (p->invalid)
+    if (p->invalid && !f->lg_f)
         mx_sort_alphabetically(p->invalid, 0, (s.i - 1), 0);
 
     mx_strdel(&s.addr_sort);
