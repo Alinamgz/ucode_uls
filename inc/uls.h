@@ -40,6 +40,7 @@ typedef struct s_parce {
     char **content_of_directory;
     int count_of_objects;
     int count_of_files;
+    int count_of_dirs;
 }              t_parse;
 
 typedef struct s_sort {
@@ -90,8 +91,11 @@ void list_files(t_parse *p);
 void count_max_len(t_parse *p, t_forlong *forlong);
 void print_lnumber(int value, int max_len);
 void print_time(struct stat forstat);
-void mx_get_acl_xattr(char *path);
+void mx_check_acl_and_attributes(char *path);
 void print_lname(char *name, int max_len);
 void list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
 void list_longfile(t_forlong *forlong, t_parse *p);
 void count_maxlen_files(t_parse *p, t_forlong *forlong);
+void list_lmanylongdir2(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
+char *mx_fullpath(char *path, char *content);
+void count_maxlen_manydirs(char *path, t_parse *p, t_forlong *forlong);

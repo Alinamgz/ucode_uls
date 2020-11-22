@@ -21,12 +21,12 @@ static int pull_names (t_parse *p, char *path, t_flags *f) {
                 p->content_of_directory[k++] = mx_strdup(de->d_name);
         }
     else {
-        while ((de = readdir(dr)) != NULL)
+        while ((de = readdir(dr)) != NULL) {
             if (de->d_name[0] != '.')
                 p->content_of_directory[k++] = mx_strdup(de->d_name);
         }
+    }
 
-    // lexicographical_sort(p);
     mx_sort_alphabetically(p->content_of_directory, 0,
                            p->count_of_objects - 1, f->lg_r);
     closedir(dr);
@@ -35,7 +35,7 @@ static int pull_names (t_parse *p, char *path, t_flags *f) {
 
 int directory_info(t_parse *p, char *path, t_flags *f) {
     struct dirent *de;
-    
+   
     DIR *dr = opendir(path);
     if (dr == NULL) { 
         mx_printstr("Could not open current directory"); // write in errno format 
@@ -56,7 +56,6 @@ int directory_info(t_parse *p, char *path, t_flags *f) {
             if (de->d_name[0] != '.')
                 p->count_of_objects++;
     }
-    
     closedir(dr);
     pull_names(p, path, f);
     return 0;
