@@ -1,18 +1,23 @@
 #include "uls.h"
 
 void list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
+    if (p->files) {
         list_longfile(forlong, p);
-
-    if (p->dirs)
-         mx_printchar('\n');
+        if (p->dirs)
+            mx_printchar('\n');
+    }
 
     if (p->dirs)
         for (int i = 0; p->dirs[i]; i++) {
-            mx_printstr(p->dirs[i]);
-            mx_printstr(":\n");
+            if (p->count_of_dirs > 1) {
+                mx_printstr(p->dirs[i]);
+                mx_printstr(":\n");
+            }
             path = p->dirs[i];
-            list_longdir(path, forlong, p, f);
+            list_lmanylongdir2(path, forlong, p, f);
             if (p->dirs[i + 1])
                 mx_printchar('\n');
+            p->content_of_directory = NULL; //free
+            p->count_of_objects = 0;
         }
 }
