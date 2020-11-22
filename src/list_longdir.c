@@ -7,7 +7,7 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
     struct group *forgroupid;
 
     directory_info(p, path, f);
-    for (int i = 0; i < p->count_of_objects; i++) {
+    for (int i = 0; i < p->count_of_objects; i++) {  
             count_max_len(p, forlong);
             stat(p->content_of_directory[i], &forstat);
 

@@ -16,9 +16,7 @@ int main(int argc, char **argv) {
         mx_parse_input(argc, argv, parse, &flags);
         if (parse->invalid)
             mx_output_invalid_addr(parse->invalid);
-        if (!parse->addresses) {
-            list_directory(parse, path, &flags);
-        }
+
         output_ls(parse, path, &flags);
     }
     // mx_printstr("\n\n------------------ main --------------------\n");
