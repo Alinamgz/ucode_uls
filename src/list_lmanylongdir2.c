@@ -10,7 +10,7 @@ void list_lmanylongdir2(char *path, t_forlong *forlong, t_parse *p, t_flags *f) 
     directory_info(p, path, f);
     for (int i = 0; i < p->count_of_objects; i++) {
             fullpath = mx_fullpath(path, p->content_of_directory[i]);
-            stat(fullpath, &forstat);
+            lstat(fullpath, &forstat);
 
             if (i == 0) {
                 count_maxlen_manydirs(path, p, forlong);
@@ -61,7 +61,10 @@ void list_lmanylongdir2(char *path, t_forlong *forlong, t_parse *p, t_flags *f) 
             print_time(forstat);
  
             mx_printchar(' ');
+            if (f->lg_G)
+                mx_colorize(forstat);
             mx_printstr(p->content_of_directory[i]);
+            mx_printstr(RESET);
             mx_printstr("\n");
 
             free(fullpath);

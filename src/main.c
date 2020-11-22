@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv) {
     t_parse *parse = (t_parse *)malloc(sizeof(t_parse));
-    t_flags flags = {0, 0, 0, 0, 0, 0};
+    t_flags flags = {0, 0, 0, 0, 0, 0, 0};
     char current_path[] = ".";
     char *path = current_path;
 

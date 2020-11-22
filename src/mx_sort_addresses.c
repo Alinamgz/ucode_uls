@@ -8,27 +8,27 @@ static inline bool is_file(const char *addr) {
     return rslt;
 }
 
-static inline bool is_dir(const char *addr) {
-    DIR *dp = opendir(addr);
-    bool rslt = dp ? 1 : 0;
-    if (dp) closedir(dp);
+static inline void pre_sorting (t_parse *p, t_sort *s, bool flag_l) {
+    struct stat fstat;
+    char *addr = NULL;
 
-    return rslt;
-}
-
-static inline void pre_sorting (t_parse *p, t_sort *s) {
     for (s->j = 0; p->addresses[s->j]; s->j++) {
-        if (is_dir(p->addresses[s->j])) {
-            s->addr_sort[s->j] = 'd';
-            s->d++;
-        }
-        else if (is_file(p->addresses[s->j])) {
-            s->addr_sort[s->j] = 'f';
-            s->f++;
-        }
-        else {
-            s->addr_sort[s->j] = 'i';
-            s->i++;
+        addr = p->addresses[s->j];
+        lstat(addr, &fstat);
+        
+        switch (fstat.st_mode & S_IFMT) {
+            case S_IFDIR:
+                s->addr_sort[s->j] = 'd';
+                s->d++;
+                break;
+            case S_IFLNK:
+                s->addr_sort[s->j] = flag_l ? 'f' : 'd';
+                flag_l ? s->f++ : s->d++;
+                break;
+            default:
+                s->addr_sort[s->j] = (is_file(addr)) ? 'f' : 'i';
+                is_file(addr) ? s->f++ : s->i++;
+                break;
         }
     }
 }
@@ -68,7 +68,7 @@ static inline void fill_addr_arrays(t_parse *p, t_sort *s) {
 void mx_sort_addresses(t_parse *p, t_flags *f, int size) {
     t_sort s = {0, 0, 0, 0, mx_strnew(size)};
 
-    pre_sorting(p, &s);
+    pre_sorting(p, &s, f->lg_l);
     init_addr_arrays(p, &s);
     fill_addr_arrays(p, &s);
 

@@ -1,7 +1,7 @@
 #pragma once
 
 // ====== defines ======
-#define VALID_FLAGS "Aaflr1"
+#define VALID_FLAGS "AGaflr1"
 #define L_FLAGS "h@eT"
 
 // ---- error msg -------
@@ -11,6 +11,16 @@
 #define ULS "uls: "
 #define ADDR_ERR ": No such file or directory\n"
 
+// ---- colors -------
+#define BOLD "\x1B[1m"
+#define RED "\x1B[31m"
+#define GREEN "\x1B[32m"
+#define YELLOW "\x1B[33m"
+#define BLUE "\x1B[34m"
+#define MAGENTA "\x1B[35m"
+#define CYAN "\x1B[36m"
+#define WHITE "\x1B[37m"
+#define RESET "\x1B[0m"
 // ====== includes ======
 #include <sys/types.h>
 #include <sys/acl.h>
@@ -53,6 +63,7 @@ typedef struct s_sort {
 
 typedef struct s_flags {
     bool lg_A;
+    bool lg_G;
     bool lg_a;
     bool lg_f;
     bool lg_l;
@@ -77,6 +88,7 @@ void mx_sort_addresses (t_parse *, t_flags *f, int size);
 void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
 void mx_switch_flags(char *flags, t_flags *f);
 void mx_output_invalid_addr(char **invalid);
+void mx_colorize(struct stat forstat);
 
 
 void list_directory(t_parse *p, char *path, t_flags *f);

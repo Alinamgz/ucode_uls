@@ -7,6 +7,9 @@ void mx_switch_flags(char *flags, t_flags *f) {
 				if (!f->lg_a && !f->lg_f)
 					f->lg_A = 1;
 				break;
+			case 'G':
+				f->lg_G = 1;
+				break;
 			case 'a':
 				f->lg_a = 1;
 				f->lg_A = 0;

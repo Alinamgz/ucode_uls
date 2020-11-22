@@ -8,7 +8,7 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
 
     directory_info(p, path, f);
     for (int i = 0; i < p->count_of_objects; i++) {
-            stat(p->content_of_directory[i], &forstat);
+            lstat(p->content_of_directory[i], &forstat);
 
             if (i == 0) {
                 count_max_len(p, forlong);
@@ -59,7 +59,10 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
             print_time(forstat);
  
             mx_printchar(' ');
+            if (f->lg_G)
+                mx_colorize(forstat);
             mx_printstr(p->content_of_directory[i]);
+            mx_printstr(RESET);
             mx_printstr("\n");
     }
 }
