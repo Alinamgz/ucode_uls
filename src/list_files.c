@@ -8,7 +8,7 @@ static void column_output(t_parse *p, bool flag_G) {
             lstat(p->content_of_directory[i], &forstat);
             mx_colorize(forstat);
         mx_printstr(p->content_of_directory[i]);
-        mx_printstr(RESET);
+        mx_printstr(RESET_COLORS);
         mx_printchar('\n');
     }
 }

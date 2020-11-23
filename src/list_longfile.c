@@ -22,6 +22,8 @@ void list_longfile(t_forlong *forlong, t_parse *p, t_flags *f) {
             print_lnumber(forstat.st_size, forlong->max_len[3]);
             mx_printchar(' ');
             print_time(forstat);
+            if (f->lg_G)
+                mx_colorize(forstat);
             mx_print_name_path(p->files[i], forstat, p->files[i]);
             mx_printstr("\n");
     }

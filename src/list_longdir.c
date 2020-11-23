@@ -5,7 +5,6 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
     struct stat forstat;
     struct passwd *foruserid;
     struct group *forgroupid;
-    char *link_target = NULL;
 
     directory_info(p, path, f);
     for (int i = 0; i < p->count_of_objects; i++) {
@@ -32,7 +31,7 @@ void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
             if (f->lg_G)
                 mx_colorize(forstat);
             mx_print_name_path(p->content_of_directory[i], forstat, p->content_of_directory[i]);
-            //mx_printstr(RESET);
+            mx_printstr(RESET_COLORS);
             mx_printstr("\n");
     }
 }

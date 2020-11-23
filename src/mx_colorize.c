@@ -17,7 +17,7 @@ void mx_colorize(struct stat forstat) {
 				 mx_printstr(RED);
 			}
 			else {
-				mx_printstr(RESET);
+				mx_printstr(RESET_COLORS);
 			}
 			break;
 	}

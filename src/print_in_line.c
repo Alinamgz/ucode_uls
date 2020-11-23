@@ -12,7 +12,7 @@ void print_in_line(t_parse *p, int first_ln, bool flag_G) {
             mx_colorize(forstat);
         }
         mx_printstr(p->content_of_directory[i]);
-        mx_printstr(RESET);
+        mx_printstr(RESET_COLORS);
         for(int j = 0; j < fake_ln; j++)
             mx_printchar(' ');
     }

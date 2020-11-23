@@ -21,7 +21,7 @@
 #define MAGENTA "\x1B[35m"
 #define CYAN "\x1B[36m"
 #define WHITE "\x1B[37m"
-#define RESET "\x1B[0m"
+#define RESET_COLORS "\x1B[0m"
 // ====== includes ======
 #include <sys/types.h>
 #include <sys/acl.h>

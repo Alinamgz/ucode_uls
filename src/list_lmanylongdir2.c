@@ -65,7 +65,7 @@ void list_lmanylongdir2(char *path, t_forlong *forlong, t_parse *p, t_flags *f) 
             if (f->lg_G)
                 mx_colorize(forstat);
             mx_printstr(p->content_of_directory[i]);
-            mx_printstr(RESET);
+            mx_printstr(RESET_COLORS);
             if ((forstat.st_mode & S_IFMT) == S_IFLNK) {
                 link_target = mx_strnew(64);
                 readlink(fullpath, link_target, 64);

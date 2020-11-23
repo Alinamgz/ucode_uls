@@ -17,7 +17,7 @@ void print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind, bool
                 mx_colorize(forstat);
             }
             mx_printstr(p->content_of_directory[j]);
-            mx_printstr(RESET);
+            mx_printstr(RESET_COLORS);
             count = 0;
             count = (first_ln - mx_strlen(p->content_of_directory[j])) / 8;
             if ((first_ln - mx_strlen(p->content_of_directory[j])) % 8 != 0) {
