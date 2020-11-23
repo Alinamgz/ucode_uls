@@ -16,7 +16,8 @@ void print_lname(char *name, int max_len) {
             all_array[i] = ' ';
             i++;
         }
-        
+    
+    mx_printchar(' ');
     mx_printstr(all_array);
     free(all_array);
 }
