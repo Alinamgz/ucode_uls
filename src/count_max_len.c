@@ -10,7 +10,7 @@ void count_max_len(t_parse *p, t_forlong *forlong) {
         forlong->max_len[j] = 0;
     }
     for (int i = 0; i < p->count_of_objects; i++) {
-        stat(p->content_of_directory[i], &forstat);
+        lstat(p->content_of_directory[i], &forstat);
         forlong->max_len[4] += forstat.st_blocks;
         if (mx_intlen(forstat.st_nlink) > forlong->max_len[0]) 
             forlong->max_len[0] = mx_intlen(forstat.st_nlink);
