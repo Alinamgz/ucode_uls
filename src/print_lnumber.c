@@ -16,7 +16,7 @@ void print_lnumber(int value, int max_len) {
         all_array[i] = numb_array[j];
         i++;
     }
-        
+    mx_printchar(' ');
     mx_printstr(all_array);
     free(all_array);
     free(numb_array);

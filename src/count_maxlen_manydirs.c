@@ -13,7 +13,7 @@ void count_maxlen_manydirs(char *path, t_parse *p, t_forlong *forlong) {
     for (int i = 0; i < p->count_of_objects; i++) {
         fullpath = NULL;
         fullpath = mx_fullpath(path, p->content_of_directory[i]);
-        stat(fullpath, &forstat);
+        lstat(fullpath, &forstat);
         forlong->max_len[4] += forstat.st_blocks;
         if (mx_intlen(forstat.st_nlink) > forlong->max_len[0]) 
             forlong->max_len[0] = mx_intlen(forstat.st_nlink);
