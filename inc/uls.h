@@ -1,8 +1,7 @@
 #pragma once
 
 // ====== defines ======
-#define VALID_FLAGS "AGaflr1"
-#define L_FLAGS "h@eT"
+#define VALID_FLAGS "AGaflr1h@eT"
 
 // ---- error msg -------
 #define ILLEGAL_OPTION "uls: illegal option -- "

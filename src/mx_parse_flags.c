@@ -22,7 +22,7 @@ static inline void pick_unique_flags(const char *str, t_parse *p) {
 		buf[0] = str[i];
 		is_valid = mx_get_char_index(VALID_FLAGS, str[i]);
 
-		if (is_valid < 0 &&  mx_get_char_index(L_FLAGS, str[i]) < 0) {
+		if (is_valid < 0) {
 			flags_error(buf);
 		}
 		else {
@@ -41,7 +41,6 @@ static inline void pick_unique_flags(const char *str, t_parse *p) {
 int mx_parse_flags(int argc, char **argv, t_parse *p) {
 	int i = 0;
 	int f_len = mx_strlen(VALID_FLAGS);
-	f_len += mx_strlen(L_FLAGS);
 
 	p->flags = mx_strnew(f_len);
 	// p->flags_state = (bool*)malloc(sizeof(bool) * f_len);
