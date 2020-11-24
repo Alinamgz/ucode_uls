@@ -84,6 +84,7 @@ typedef struct s_forlong {
     int minor;
     int count_of_device_files;
     char *suffix_size;
+    char *fault_groupid;
 }              t_forlong;
 
 // ======= funcs =======

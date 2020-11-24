@@ -23,8 +23,17 @@ void mx_count_maxlen_files(t_parse *p, t_forlong *forlong) {
         if (mx_strlen(foruserid->pw_name) > forlong->max_len[1])
             forlong->max_len[1] = mx_strlen(foruserid->pw_name);
         forgroupid = getgrgid(forstat.st_gid);
-        if (mx_strlen(forgroupid->gr_name) > forlong->max_len[2])
-            forlong->max_len[2] = mx_strlen(forgroupid->gr_name);
+        if (forgroupid == NULL) {
+            forlong->fault_groupid = mx_itoa(forstat.st_gid);
+            if (mx_strlen(forlong->fault_groupid) > forlong->max_len[2])
+                forlong->max_len[2] = mx_strlen(forlong->fault_groupid);
+            free(forlong->fault_groupid);
+            forlong->fault_groupid = NULL;
+        }
+        else
+            if (mx_strlen(forgroupid->gr_name) > forlong->max_len[2])
+                forlong->max_len[2] = mx_strlen(forgroupid->gr_name);
+        
         if (mx_intlen(forstat.st_size) > forlong->max_len[3])
             forlong->max_len[3] = mx_intlen(forstat.st_size);
 

@@ -11,6 +11,7 @@ void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *
     for (int i = 0; i < p->count_of_objects; i++) {
             fullpath = mx_fullpath(path, p->content_of_directory[i]);
             lstat(fullpath, &forstat);
+            
             if (i == 0) {
                 mx_count_maxlen_manydirs(path, p, forlong);
                 mx_printstr("total ");
@@ -25,7 +26,15 @@ void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *
             mx_print_lname(foruserid->pw_name, forlong->max_len[1]);
             mx_printchar(' ');
             forgroupid = getgrgid(forstat.st_gid);
-            mx_print_lname(forgroupid->gr_name, forlong->max_len[2]);
+            if (forgroupid == NULL) {
+                forlong->fault_groupid = mx_itoa(forstat.st_gid);
+                mx_print_lname(forlong->fault_groupid, forlong->max_len[2]);
+                free(forlong->fault_groupid);
+                forlong->fault_groupid = NULL;
+            }
+            else
+                mx_print_lname(forgroupid->gr_name, forlong->max_len[2]);
+
             mx_printchar(' ');
             mx_print_size_or_device(forlong, forstat, f, p);
             mx_printchar(' ');
