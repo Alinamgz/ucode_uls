@@ -1,8 +1,7 @@
 #pragma once
 
 // ====== defines ======
-#define VALID_FLAGS "AGaflr1"
-#define L_FLAGS "h@eT"
+#define VALID_FLAGS "AGT@aefhlr1"
 #define BUF_SIZE 64
 
 // ---- error msg -------
