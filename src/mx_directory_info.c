@@ -33,7 +33,7 @@ static int pull_names (t_parse *p, char *path, t_flags *f) {
     return 0;
 }
 
-int directory_info(t_parse *p, char *path, t_flags *f) {
+int mx_directory_info(t_parse *p, char *path, t_flags *f) {
     struct dirent *de;
    
     DIR *dr = opendir(path);

@@ -33,10 +33,13 @@
 #include <pwd.h>
 #include <grp.h>
 #include <stdbool.h>
+#include <string.h>
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <sys/xattr.h>
+#include <sys/errno.h>
 #include "libmx.h"
+
 
 // ====== structs ======
 typedef struct s_parce {
@@ -69,17 +72,25 @@ typedef struct s_flags {
     bool lg_l;
     bool lg_r;
     bool lg_1;
+    bool lg_h;
+    bool lg_e;
+    bool lg_x;
+    bool lg_T;
 }              t_flags;
 
 typedef struct s_forlong {
     int *max_len;
+    int major;
+    int minor;
+    int count_of_device_files;
+    char *suffix_size;
 }              t_forlong;
 
 // ======= funcs =======
 // int mx_parse_input(int argc, char **argv, t_parse *p);
-// int list_directory(char *path);
+// int mx_list_directory(char *path);
 // int output_ls(t_parse *p);
-// int list_longdir(const char *path);
+// int mx_list_longdir(const char *path);
 void mx_init_parsing (t_parse *p);
 void mx_parse_input(int argc, char **argv, t_parse *p, t_flags *f);
 int mx_parse_flags(int argc, char **argv, t_parse *p);
@@ -91,28 +102,35 @@ void mx_output_invalid_addr(char **invalid);
 void mx_colorize(struct stat forstat);
 
 
-void list_directory(t_parse *p, char *path, t_flags *f);
-void output_ls(t_parse *p, char *path, t_flags *f);
-void list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
-int directory_info(t_parse *p, char *path, t_flags *f);
-void print_in_line(t_parse *p, int first_ln);
-void line_output(t_parse *p);
-void lexicographical_sort(t_parse *p);
-void print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind);
-void list_few_filedirs(t_parse *p, char *path, t_flags *f);
+void mx_list_directory(t_parse *p, char *path, t_flags *f);
+void mx_output_ls(t_parse *p, char *path, t_flags *f);
+void mx_list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
+int mx_directory_info(t_parse *p, char *path, t_flags *f);
+void mx_print_in_line(t_parse *p, int first_ln);
+void mx_line_output(t_parse *p);
+void mx_lexicographical_sort(t_parse *p);
+void mx_print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind);
+void mx_list_few_filedirs(t_parse *p, char *path, t_flags *f);
 // void mx_sort_addresses(t_parse *p, int j);
-void list_files(t_parse *p, bool flag_1);
-void count_max_len(t_parse *p, t_forlong *forlong);
-void print_lnumber(int value, int max_len);
-void print_time(struct stat forstat);
+void mx_list_files(t_parse *p, bool flag_1);
+void mx_count_max_len(t_parse *p, t_forlong *forlong);
+void mx_print_lnumber(int value, int max_len);
 void mx_check_acl_and_attributes(char *path);
-void print_lname(char *name, int max_len);
-void list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
-void list_longfile(t_forlong *forlong, t_parse *p);
-void count_maxlen_files(t_parse *p, t_forlong *forlong);
+void mx_print_lname(char *name, int max_len);
+void mx_list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
+void mx_list_longfile(t_forlong *forlong, t_parse *p, t_flags *f);
+void mx_count_maxlen_files(t_parse *p, t_forlong *forlong);
 void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
 char *mx_fullpath(char *path, char *content);
-void count_maxlen_manydirs(char *path, t_parse *p, t_forlong *forlong);
+void mx_count_maxlen_manydirs(char *path, t_parse *p, t_forlong *forlong);
 void mx_print_name_path(char *name_to_print, struct stat forstat, char *fullpath);
 void mx_print_type_of_file(struct stat forstat);
 void mx_print_file_permissions(struct stat forstat);
+void mx_find_major_minor(int number, t_forlong *forlong);
+void mx_print_size_or_device(t_forlong *forlong, struct stat forstat, t_flags *f, t_parse *p);
+void mx_for_flag_h(t_forlong *forlong, int number);
+void mx_print_lname_right(char *name, int max_len);
+void mx_float_to_char(float n, char *res, int afterpoint);
+void mx_print_acl(char *fullpath);
+void mx_print_xattr(char *fullpath);
+void mx_print_time(struct stat forstat, t_flags *f);

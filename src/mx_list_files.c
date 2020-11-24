@@ -7,12 +7,12 @@ static void column_output(t_parse *p) {
     }
 }
 
-void list_files(t_parse *p, bool flag_1) {
+void mx_list_files(t_parse *p, bool flag_1) {
     p->content_of_directory = p->files;
     p->count_of_objects = p->count_of_files;
 
     if (isatty(1) && !flag_1) {
-        line_output(p);
+        mx_line_output(p);
     }
     else
         column_output(p);

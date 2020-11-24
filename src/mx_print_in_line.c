@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void print_in_line(t_parse *p, int first_ln) {
+void mx_print_in_line(t_parse *p, int first_ln) {
     int fake_ln = 0;
 
     for (int i = 0; i < p->count_of_objects; i++) {

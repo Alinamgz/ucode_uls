@@ -4,12 +4,12 @@
 
 int main(int argc, char **argv) {
     t_parse *parse = (t_parse *)malloc(sizeof(t_parse));
-    t_flags flags = {0, 0, 0, 0, 0, 0, 0};
+    t_flags flags = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
     char current_path[] = ".";
     char *path = current_path;
 
     if (argc == 1) {
-        list_directory(parse, path, &flags);
+        mx_list_directory(parse, path, &flags);
         return 0;
     } else {
         mx_init_parsing(parse);
@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
         if (parse->invalid)
             mx_output_invalid_addr(parse->invalid);
 
-        output_ls(parse, path, &flags);
+        mx_output_ls(parse, path, &flags);
     }
     // mx_printstr("\n\n------------------ main --------------------\n");
     // system("leaks -q  uls");

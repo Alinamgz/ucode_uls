@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void lexicographical_sort(t_parse *p) {
+void mx_lexicographical_sort(t_parse *p) {
     char *tmp = NULL;
     int i = 0;
     int j = 0;

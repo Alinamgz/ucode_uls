@@ -31,7 +31,7 @@ static int ln_terminal(int first_ln) { // try to make loop
     return first_ln;
 }
 
-void line_output(t_parse *p) {
+void mx_line_output(t_parse *p) {
     struct winsize size_wind;
     int first_ln = 0;
 
@@ -42,7 +42,7 @@ void line_output(t_parse *p) {
 
 
     if (first_ln * p->count_of_objects <= size_wind.ws_col)
-        print_in_line(p, first_ln);
+        mx_print_in_line(p, first_ln);
     else
-        print_in_multiline(p, first_ln, size_wind);
+        mx_print_in_multiline(p, first_ln, size_wind);
 }
