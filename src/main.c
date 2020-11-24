@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
     }
     // mx_printstr("\n\n------------------ main --------------------\n");
     // system("leaks -q  uls");
+
     if (parse->invalid)
         return 1;
     return 0;
