@@ -33,7 +33,8 @@ void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *
             if (f->lg_G)
                 mx_colorize(forstat);
             mx_print_name_path(p->content_of_directory[i], forstat, fullpath);
-            //mx_printstr(RESET);
+            // TODO: fix colorizing if NOT stdout
+            mx_printstr(RESET_COLORS);
             if (f->lg_x)
                 mx_print_xattr(fullpath);
             if (f->lg_e)

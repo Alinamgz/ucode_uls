@@ -3,7 +3,7 @@
 void mx_output_ls(t_parse *p, char *path, t_flags *f) {
     t_forlong *forlong = NULL;
 
-    if (!p->files && !p->dirs) {
+    if (!p->files && !p->dirs && !p->invalid) {
         if (f->lg_l) {
             mx_list_longdir(path, forlong, p, f);
         }
