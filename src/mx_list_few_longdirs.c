@@ -9,7 +9,7 @@ void mx_list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f
 
     if (p->dirs)
         for (int i = 0; p->dirs[i]; i++) {
-            if (p->count_of_dirs > 1) {
+            if (p->count_of_dirs > 1 || p->files || p->invalid) {
                 mx_printstr(p->dirs[i]);
                 mx_printstr(":\n");
             }
