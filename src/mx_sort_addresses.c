@@ -1,34 +1,44 @@
 #include "uls.h"
 
-static inline bool is_file(const char *addr) {
-    int fd = open(addr, O_RDONLY);
-    bool rslt = fd < 0 ? 0 : 1;
-    if (fd >= 0) close(fd);
-
-    return rslt;
-}
-
 static inline void pre_sorting (t_parse *p, t_sort *s, bool flag_l) {
     struct stat fstat;
+    int stat_rslt = -1;
     char *addr = NULL;
 
     for (s->j = 0; p->addresses[s->j]; s->j++) {
         addr = p->addresses[s->j];
-        lstat(addr, &fstat);
-        
-        switch (fstat.st_mode & S_IFMT) {
-            case S_IFDIR:
-                s->addr_sort[s->j] = 'd';
-                s->d++;
-                break;
-            case S_IFLNK:
-                s->addr_sort[s->j] = flag_l ? 'f' : 'd';
-                flag_l ? s->f++ : s->d++;
-                break;
-            default:
-                s->addr_sort[s->j] = (is_file(addr)) ? 'f' : 'i';
-                is_file(addr) ? s->f++ : s->i++;
-                break;
+        stat_rslt = lstat(addr, &fstat);
+        if (!stat_rslt) {
+            switch (fstat.st_mode & S_IFMT) {
+                case S_IFDIR:
+                    s->addr_sort[s->j] = 'd';
+                    s->d++;
+                    break;
+                case S_IFLNK:
+                    stat_rslt = stat(addr, &fstat);
+                        if (!stat_rslt && S_ISDIR(fstat.st_mode) && !flag_l){
+                            s->addr_sort[s->j] = 'd';
+                            s->d++;
+                        }
+                        else {
+                            s->addr_sort[s->j] = 'f';
+                            s->f++;
+                        }
+                    break;
+                case S_IFREG:
+                    s->addr_sort[s->j] = 'f';
+                    s->f++;
+                    break;
+                default:
+                    s->addr_sort[s->j] = 'f';
+                    s->f++;
+                    break;
+            }
+        }
+        else {
+            // TODO err ahndlong with errno and so on
+            s->addr_sort[s->j] = 'i';
+            s->i++;
         }
     }
 }
