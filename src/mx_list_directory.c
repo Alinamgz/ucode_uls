@@ -18,10 +18,10 @@ static void column_output(t_parse *p, int isatty, bool flag_G) {
     }
 }
 
-void list_directory(t_parse *p, char *path, t_flags *f) {
-    directory_info(p, path, f);
+void mx_list_directory(t_parse *p, char *path, t_flags *f) {
+    mx_directory_info(p, path, f);
     if (isatty(1) && !f->lg_1) {
-        line_output(p, f->lg_G);
+        mx_line_output(p, f->lg_G);
     }
     else{
         column_output(p, isatty(1), f->lg_G);

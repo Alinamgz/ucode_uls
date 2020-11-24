@@ -1,8 +1,8 @@
 #include "uls.h"
 
-void list_few_filedirs(t_parse *p, char *path, t_flags *f) {
+void mx_list_few_filedirs(t_parse *p, char *path, t_flags *f) {
     if (p->files) {
-        list_files(p, f);
+        mx_list_files(p, f);
         if (p->dirs)
             mx_printchar('\n');
     }
@@ -14,7 +14,7 @@ void list_few_filedirs(t_parse *p, char *path, t_flags *f) {
                 mx_printstr(":\n");
             }
             path = p->dirs[i];
-            list_directory(p, path, f);
+            mx_list_directory(p, path, f);
             if (p->dirs[i + 1] != NULL)
                 mx_printchar('\n');
         }

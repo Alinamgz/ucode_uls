@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void print_in_line(t_parse *p, int first_ln, bool flag_G) {
+void mx_print_in_line(t_parse *p, int first_ln, bool flag_G) {
     int fake_ln = 0;
     struct stat forstat;
 

@@ -31,7 +31,7 @@ static void column_output(t_parse *p, int isatty, bool flag_G) {
     }
 }
 
-void list_files(t_parse *p, t_flags *f) {
+void mx_list_files(t_parse *p, t_flags *f) {
     p->content_of_directory = p->files;
     p->count_of_objects = p->count_of_files;
 
@@ -42,7 +42,7 @@ void list_files(t_parse *p, t_flags *f) {
     //     column_output(p, isatty(1), f->lg_G);
 
     if (isatty(1) && !f->lg_1) {
-        line_output(p, f->lg_G);
+        mx_line_output(p, f->lg_G);
     }
     else{
         column_output(p, isatty(1), f->lg_G);
