@@ -2,10 +2,12 @@
 
 static void column_output(t_parse *p, bool flag_G) {
     struct stat forstat;
+    int s_rslt = -1;
 
     for (int i = 0; i < p->count_of_objects; i++) {
         if (flag_G){
-            lstat(p->content_of_directory[i], &forstat);
+            s_rslt = stat(p->content_of_directory[i], &forstat);
+            s_rslt == 0 ? s_rslt : lstat(p->content_of_directory[i], &forstat);
             mx_colorize(forstat);
             mx_printstr(p->content_of_directory[i]);
             mx_printstr(RESET_COLORS);
