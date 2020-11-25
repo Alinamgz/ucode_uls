@@ -106,6 +106,9 @@ void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
 void mx_switch_flags(char *flags, t_flags *f);
 void mx_output_invalid_addr(char **invalid);
 void mx_colorize(struct stat forstat);
+// ------------------------- draft ----------------------
+void mx_line_output_colorful(t_parse *p, char *path);
+// -------------------------------------------------------
 
 void mx_list_directory(t_parse *p, char *path, t_flags *f);
 void mx_output_ls(t_parse *p, char *path, t_flags *f);

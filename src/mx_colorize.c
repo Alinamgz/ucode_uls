@@ -20,7 +20,7 @@ void mx_colorize(struct stat forstat) {
             break;
         // case S_IFLNK:
         //     mx_printstr(MAGENTA);
-            break;
+            // break;
         // TODO:
         // case S_IFSOCK:
             // break;
@@ -30,6 +30,3 @@ void mx_colorize(struct stat forstat) {
     }
 }
 
-// void mx_colorize(char *addr) {
-
-// }
