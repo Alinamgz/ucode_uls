@@ -106,8 +106,6 @@ void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
 void mx_switch_flags(char *flags, t_flags *f);
 void mx_output_invalid_addr(char **invalid);
 void mx_colorize(struct stat forstat);
-// void mx_colorize(char *addr);
-
 
 void mx_list_directory(t_parse *p, char *path, t_flags *f);
 void mx_output_ls(t_parse *p, char *path, t_flags *f);
@@ -129,7 +127,7 @@ void mx_count_maxlen_files(t_parse *p, t_forlong *forlong);
 void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
 char *mx_fullpath(char *path, char *content);
 void mx_count_maxlen_manydirs(char *path, t_parse *p, t_forlong *forlong);
-void mx_print_name_path(char *name_to_print, struct stat forstat, char *fullpath);
+void mx_print_name_path(char *name_to_print, struct stat forstat, char *fullpath, bool flag_G);
 void mx_print_type_of_file(struct stat forstat);
 void mx_print_file_permissions(struct stat forstat);
 void mx_find_major_minor(int number, t_forlong *forlong);

@@ -39,16 +39,9 @@ void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *
             mx_print_size_or_device(forlong, forstat, f, p);
             mx_printchar(' ');
             mx_print_time(forstat, f);
-            if (f->lg_G && isatty(1)){
-                mx_colorize(forstat);
-                mx_print_name_path(p->content_of_directory[i],
-                                   forstat, fullpath);
-                mx_printstr(RESET_COLORS);
-            }
-            else {
-                mx_print_name_path(p->content_of_directory[i],
-                                   forstat, fullpath);
-            }
+            mx_print_name_path(p->content_of_directory[i],
+                               forstat, fullpath, f->lg_G);
+
             if (f->lg_x)
                 mx_print_xattr(fullpath);
             if (f->lg_e)

@@ -30,9 +30,7 @@ void mx_list_longfile(t_forlong *forlong, t_parse *p, t_flags *f) {
             mx_print_size_or_device(forlong, forstat, f, p);
             mx_printchar(' ');
             mx_print_time(forstat, f);
-            if (f->lg_G)
-                mx_colorize(forstat);
-            mx_print_name_path(p->files[i], forstat, p->files[i]);
+            mx_print_name_path(p->files[i], forstat, p->files[i], f->lg_G);
             if (f->lg_x)
                 mx_print_xattr(p->files[i]);
             if (f->lg_e)
