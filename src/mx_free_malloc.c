@@ -1,8 +1,11 @@
 #include "uls.h"
 
-void mx_free_malloc(t_parse *parse) {
-    if (parse->invalid)
-        exit(1);
+void mx_free_malloc(t_parse *parse, int *rslt) {
+   
+    if (parse->invalid){
+        mx_del_strarr(&parse->invalid);
+        *rslt = 1;
+        }
     if (parse->addresses)
         mx_del_strarr(&parse->addresses);
     if (parse->files)
