@@ -27,8 +27,21 @@ void mx_switch_flags(char *flags, t_flags *f) {
 				f->lg_r = 1;
 				break;
 			case '1':
-					f->lg_1 = 1;
-					f->lg_l = 0;
+				f->lg_1 = 1;
+				f->lg_l = 0;
+				break;
+			case 'T':
+				f->lg_T = 1;
+				break;
+			case 'h':
+				f->lg_h = 1;
+				f->lg_T = 0;
+				break;
+			case '@':
+				f->lg_x = 1;
+				break;
+			case 'e':
+				f->lg_e = 1;
 				break;
 			default:
 				break;

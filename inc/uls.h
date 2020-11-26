@@ -10,6 +10,7 @@
 #define USAGE_END "] [file ...]\n"
 #define ULS "uls: "
 #define ADDR_ERR ": No such file or directory\n"
+#define ACL_IGNORE "!#acl\n"
 
 // ---- colors -------
 #define RESET_COLORS "\x1B[0m"
@@ -88,8 +89,10 @@ typedef struct s_forlong {
     int major;
     int minor;
     int count_of_device_files;
+    int count_of_acl;
     char *suffix_size;
     char *fault_groupid;
+    char *fault_userid;
 }              t_forlong;
 
 // ======= funcs =======
@@ -141,3 +144,5 @@ void mx_float_to_char(float n, char *res, int afterpoint);
 void mx_print_acl(char *fullpath);
 void mx_print_xattr(char *fullpath);
 void mx_print_time(struct stat forstat, t_flags *f);
+void mx_print_user_group(struct stat forstat, t_forlong *forlong);
+void mx_free_malloc(t_parse *parse);

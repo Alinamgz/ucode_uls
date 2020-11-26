@@ -16,13 +16,9 @@ int main(int argc, char **argv) {
         mx_parse_input(argc, argv, parse, &flags);
         if (parse->invalid)
             mx_output_invalid_addr(parse->invalid);
-
         mx_output_ls(parse, path, &flags);
     }
-    // mx_printstr("\n\n------------------ main --------------------\n");
-    // system("leaks -q  uls");
-
-    if (parse->invalid)
-        return 1;
+    mx_free_malloc(parse);
+    //system("leaks -q  uls");
     return 0;
 }
