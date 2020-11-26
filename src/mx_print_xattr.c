@@ -22,11 +22,16 @@ void mx_print_xattr(char *fullpath) {
     key = buf;
     while (buflen > 0) {
         mx_printstr("\n");
+        mx_printstr("\t");
         mx_printstr(key);
 
         vallen = getxattr(fullpath, key, NULL, 0, 0, XATTR_NOFOLLOW);
         if (vallen == -1)
             return;
+        if (vallen == 0) {
+                mx_printstr("\t");
+                mx_print_lnumber(vallen, 3);
+        }
         if (vallen > 0) {
             val = malloc(vallen + 1);
             if (val == NULL) {
@@ -37,12 +42,14 @@ void mx_print_xattr(char *fullpath) {
                 return;
             else {
                 val[vallen] = 0;
-                mx_printstr(val);
+                //mx_printstr(val);
+                mx_printstr("\t");
+                mx_print_lnumber(vallen, 3);
+                //mx_printint(vallen);
             }
             free(val);
         }
-        else if (vallen == 0)
-            mx_printint(vallen);
+            
         keylen = strlen(key) + 1;
         buflen -= keylen;
         key += keylen;

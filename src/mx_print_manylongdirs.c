@@ -3,15 +3,12 @@
 void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
     forlong = (t_forlong *)malloc(sizeof(t_forlong));
     struct stat forstat;
-    struct passwd *foruserid;
-    struct group *forgroupid;
     char *fullpath = NULL;
 
     mx_directory_info(p, path, f);
     for (int i = 0; i < p->count_of_objects; i++) {
             fullpath = mx_fullpath(path, p->content_of_directory[i]);
             lstat(fullpath, &forstat);
-            
             if (i == 0) {
                 mx_count_maxlen_manydirs(path, p, forlong);
                 mx_printstr("total ");
@@ -22,19 +19,7 @@ void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *
             mx_print_file_permissions(forstat);
             mx_check_acl_and_attributes(fullpath);
             mx_print_lnumber(forstat.st_nlink, forlong->max_len[0]);
-            foruserid = getpwuid(forstat.st_uid);
-            mx_print_lname(foruserid->pw_name, forlong->max_len[1]);
-            mx_printchar(' ');
-            forgroupid = getgrgid(forstat.st_gid);
-            if (forgroupid == NULL) {
-                forlong->fault_groupid = mx_itoa(forstat.st_gid);
-                mx_print_lname(forlong->fault_groupid, forlong->max_len[2]);
-                free(forlong->fault_groupid);
-                forlong->fault_groupid = NULL;
-            }
-            else
-                mx_print_lname(forgroupid->gr_name, forlong->max_len[2]);
-
+            mx_print_user_group(forstat, forlong);
             mx_printchar(' ');
             mx_print_size_or_device(forlong, forstat, f, p);
             mx_printchar(' ');
@@ -51,4 +36,13 @@ void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *
             free(fullpath);
             fullpath = NULL;
     }
+    if (p->content_of_directory)
+        for (int i = 0; i < p->count_of_objects; i++)
+            free(p->content_of_directory[i]);
+    if (p->content_of_directory)
+        free(p->content_of_directory);
+    p->content_of_directory = NULL; //free
+    p->count_of_objects = 0;
+    free(forlong->max_len);
+    free(forlong);
 }

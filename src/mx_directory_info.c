@@ -7,7 +7,7 @@ static int pull_names (t_parse *p, char *path, t_flags *f) {
     p->content_of_directory = (char **)malloc(sizeof(char *) * p->count_of_objects + 1); // free
     DIR *dr = opendir(path);
     if (dr == NULL) { 
-        mx_printstr("Could not open current directory"); // write in errno format 
+        strerror(errno); 
         return 0; 
     }
     
@@ -38,7 +38,7 @@ int mx_directory_info(t_parse *p, char *path, t_flags *f) {
    
     DIR *dr = opendir(path);
     if (dr == NULL) { 
-        mx_printstr("Could not open current directory"); // write in errno format 
+        strerror(errno);
         return 0; 
     }
 

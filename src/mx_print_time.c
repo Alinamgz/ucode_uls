@@ -53,5 +53,5 @@ void mx_print_time(struct stat forstat, t_flags *f) {
         }
     }
     mx_printstr(current_time_zone);
-    free(current_time_zone);
+    mx_strdel(&current_time_zone);
 }
