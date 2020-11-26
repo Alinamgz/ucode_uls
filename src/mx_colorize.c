@@ -6,9 +6,14 @@ void mx_colorize(struct stat forstat) {
             mx_printstr(BG_CYAN);
             break;
         case S_IFREG:
-            if (forstat.st_mode & S_IXUSR)
+            if (forstat.st_mode & S_ISUID) {
+                mx_printstr(BG_RED);
+            } else if (forstat.st_mode & S_ISGID) {
+                mx_printstr(BG_CYAN_BL);
+            } else if (forstat.st_mode & S_IXUSR) {
                 mx_printstr(RED);
-            break;
+            }
+                break;
         case S_IFCHR:
             mx_printstr(BG_YELLOW);
             break;
@@ -18,15 +23,11 @@ void mx_colorize(struct stat forstat) {
         case S_IFIFO:
             mx_printstr(BG_CYAN);
             break;
-        // case S_IFLNK:
-        //     mx_printstr(MAGENTA);
-            // break;
         // TODO:
         // case S_IFSOCK:
-            // break;
+        //     break;
         default:
             mx_printstr(MAGENTA);
             break;
     }
 }
-
