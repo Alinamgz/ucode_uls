@@ -149,4 +149,4 @@ void mx_print_acl(char *fullpath);
 void mx_print_xattr(char *fullpath);
 void mx_print_time(struct stat forstat, t_flags *f);
 void mx_print_user_group(struct stat forstat, t_forlong *forlong);
-void mx_free_malloc(t_parse *parse);
+void mx_free_malloc(t_parse *parse, int *rslt);
