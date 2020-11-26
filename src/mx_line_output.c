@@ -34,7 +34,7 @@ static int ln_terminal(int first_ln) { // try to make loop
 }
 
 // TODO: make it work for -G, check for leaks
-void mx_line_output(t_parse *p) {
+void mx_line_output(t_parse *p, t_flags *f) {
     struct winsize size_wind;
     int first_ln = 0;
 
@@ -44,7 +44,7 @@ void mx_line_output(t_parse *p) {
     first_ln = ln_terminal(first_ln);
 
     if (first_ln * p->count_of_objects <= size_wind.ws_col)
-       mx_print_in_line(p, first_ln);
+       mx_print_in_line(p, first_ln, f->lg_G);
     else
         mx_print_in_multiline(p, first_ln, size_wind);
 }
