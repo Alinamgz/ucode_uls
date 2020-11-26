@@ -31,7 +31,8 @@ void mx_list_files(t_parse *p, t_flags *f) {
         f->lg_G = isatty(1);
         column_output(p, f->lg_G);
     }
-
+    //if (p->content_of_directory)
+        //free(p->content_of_directory);
     p->content_of_directory = NULL;
     p->count_of_objects = 0;
     return;

@@ -30,6 +30,13 @@ void mx_list_directory(t_parse *p, char *path, t_flags *f) {
         column_output(p, path, f->lg_G);
     }
     
+    if (p->content_of_directory)
+        for (int i = 0; i < p->count_of_objects; i++)
+            free(p->content_of_directory[i]);
+    if (p->content_of_directory)
+        free(p->content_of_directory);
+    p->content_of_directory = NULL; //free
     p->count_of_objects = 0;
-    return;
+    p->count_of_objects = 0;
+    
 }
