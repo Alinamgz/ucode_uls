@@ -21,5 +21,6 @@ int main(int argc, char **argv) {
         mx_output_ls(parse, path, &flags);
     }
     mx_free_malloc(parse, &rslt);
+
     return rslt;
 }

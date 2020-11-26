@@ -8,6 +8,9 @@ static inline void swap_strings(char **arr, int i, int j) {
 }
 
 static inline void sort_ascending(char **arr, t_sort *s, int left, int right){
+    int old_i = s->i;
+    int old_j = s->j;
+
     while(mx_strcmp(arr[s->i], arr[s->f]) < 0 && s->i <= right)
         s->i++;
     while(mx_strcmp(arr[s->j], arr[s->f]) > 0 && s->j >= left)
@@ -16,9 +19,14 @@ static inline void sort_ascending(char **arr, t_sort *s, int left, int right){
     if(s->i < s->j) {
         swap_strings(arr, s->i, s->j);
     }
+    s->i += s->i == old_i ? 1 : 0;
+    s->j -= s->j == old_j ? 1 : 0;
 }
 
 static inline void sort_descending(char **arr, t_sort *s, int left, int right){
+    int old_i = s->i;
+    int old_j = s->j;
+    
     while(mx_strcmp(arr[s->i], arr[s->f]) > 0 && s->i <= right)
         s->i++;
     while(mx_strcmp(arr[s->j], arr[s->f]) < 0 && s->j >= left)
@@ -27,6 +35,8 @@ static inline void sort_descending(char **arr, t_sort *s, int left, int right){
     if(s->i < s->j) {
         swap_strings(arr, s->i, s->j);
     }
+    s->i += s->i == old_i ? 1 : 0;
+    s->j -= s->j == old_j ? 1 : 0;
 }
 
 void mx_sort_alphabetically(char **arr, int left, int right, bool flag_r) {
@@ -42,8 +52,7 @@ void mx_sort_alphabetically(char **arr, int left, int right, bool flag_r) {
             }
         }
         swap_strings(arr, s.j, s.f);
-
-        mx_sort_alphabetically(arr, left, s.j - 1, flag_r);
+        mx_sort_alphabetically(arr, left, s.j, flag_r);
         mx_sort_alphabetically(arr, s.j + 1, right, flag_r);
     }
 }
