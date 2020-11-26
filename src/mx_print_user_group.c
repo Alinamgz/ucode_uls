@@ -6,8 +6,8 @@ void mx_print_user_group(struct stat forstat, t_forlong *forlong) {
 
     foruserid = getpwuid(forstat.st_uid);
     if (foruserid == NULL) {
-        forlong->fault_userid = mx_itoa(forstat.st_gid);
-        mx_print_lname(forlong->fault_userid, forlong->max_len[2]);
+        forlong->fault_userid = mx_itoa(forstat.st_uid);
+        mx_print_lname(forlong->fault_userid, forlong->max_len[1]);
         free(forlong->fault_userid);
         forlong->fault_userid = NULL;
     }
