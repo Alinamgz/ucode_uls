@@ -1,10 +1,10 @@
 #include "uls.h"
 
-void mx_list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
+void mx_list_longdir(t_forlong *forlong, t_parse *p, t_flags *f) {
     forlong = (t_forlong *)malloc(sizeof(t_forlong));
     struct stat forstat;
 
-    mx_directory_info(p, path, f);
+    mx_directory_info(p, f);
     for (int i = 0; i < p->count_of_objects; i++) {
         lstat(p->content_of_directory[i], &forstat);
         if (i == 0) {

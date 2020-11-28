@@ -1,16 +1,16 @@
 #include "uls.h"
 
-void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
+void mx_print_manylongdirs(t_forlong *forlong, t_parse *p, t_flags *f) {
     forlong = (t_forlong *)malloc(sizeof(t_forlong));
     struct stat forstat;
     char *fullpath = NULL;
 
-    mx_directory_info(p, path, f);
+    mx_directory_info(p, f);
     for (int i = 0; i < p->count_of_objects; i++) {
-            fullpath = mx_fullpath(path, p->content_of_directory[i]);
+            fullpath = mx_fullpath(p->path_pref, p->content_of_directory[i]);
             lstat(fullpath, &forstat);
             if (i == 0) {
-                mx_count_maxlen_manydirs(path, p, forlong);
+                mx_count_maxlen_manydirs(p, forlong);
                 mx_printstr("total ");
                 mx_printint(forlong->max_len[4]);
                 mx_printchar('\n');

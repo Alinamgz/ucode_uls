@@ -1,11 +1,12 @@
 #include "uls.h"
 
-static int pull_names (t_parse *p, char *path, t_flags *f) {
+static int pull_names (t_parse *p, t_flags *f) {
     struct dirent *de;
     int k = 0;
 
     p->content_of_directory = (char **)malloc(sizeof(char *) * p->count_of_objects + 1); // free
-    DIR *dr = opendir(path);
+
+    DIR *dr = opendir(p->path_pref);
     if (dr == NULL) { 
         strerror(errno); 
         return 0; 
@@ -33,10 +34,10 @@ static int pull_names (t_parse *p, char *path, t_flags *f) {
     return 0;
 }
 
-int mx_directory_info(t_parse *p, char *path, t_flags *f) {
+int mx_directory_info(t_parse *p, t_flags *f) {
     struct dirent *de;
    
-    DIR *dr = opendir(path);
+    DIR *dr = opendir(p->path_pref);
     if (dr == NULL) { 
         strerror(errno);
         return 0; 
@@ -57,6 +58,6 @@ int mx_directory_info(t_parse *p, char *path, t_flags *f) {
                 p->count_of_objects++;
     }
     closedir(dr);
-    pull_names(p, path, f);
+    pull_names(p, f);
     return 0;
 }

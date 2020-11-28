@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_count_maxlen_manydirs(char *path, t_parse *p, t_forlong *forlong) {
+void mx_count_maxlen_manydirs(t_parse *p, t_forlong *forlong) {
     forlong->max_len = (int *)malloc(sizeof(int) * 7); //free
     forlong->major = 0;
     forlong->minor = 0;
@@ -18,7 +18,7 @@ void mx_count_maxlen_manydirs(char *path, t_parse *p, t_forlong *forlong) {
     for (int j = 0; j < 7; j++)
         forlong->max_len[j] = 0;
     for (int i = 0; i < p->count_of_objects; i++) {
-        fullpath = mx_fullpath(path, p->content_of_directory[i]);
+        fullpath = mx_fullpath(p->path_pref, p->content_of_directory[i]);
         lstat(fullpath, &forstat);
 
         forlong->max_len[4] += forstat.st_blocks;

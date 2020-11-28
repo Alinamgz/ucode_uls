@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f) {
+void mx_list_few_longdirs(t_forlong *forlong, t_parse *p, t_flags *f) {
     if (p->files) {
         mx_list_longfile(forlong, p, f);
         if (p->dirs)
@@ -13,8 +13,8 @@ void mx_list_few_longdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *f
                 mx_printstr(p->dirs[i]);
                 mx_printstr(":\n");
             }
-            path = p->dirs[i];
-            mx_print_manylongdirs(path, forlong, p, f);
+            p->path_pref = p->dirs[i];
+            mx_print_manylongdirs(forlong, p, f);
             if (p->dirs[i + 1])
                 mx_printchar('\n');
         }

@@ -53,9 +53,9 @@
 
 // ====== structs ======
 typedef struct s_parce {
-    // bool *flags_state;
     char *flags;
-    char *target;
+    char *path_pref;
+    char **fullpath;
     char **addresses;
     char **files;
     char **dirs;
@@ -86,6 +86,7 @@ typedef struct s_flags {
     bool lg_e;
     bool lg_x;
     bool lg_T;
+    bool just_files;
 }              t_flags;
 
 typedef struct s_forlong {
@@ -99,22 +100,21 @@ typedef struct s_forlong {
     char *fault_userid;
 }              t_forlong;
 
-// ======= funcs =======
-
-//  -------- char *  ---------
+// ===================== funcs =====================
+//  ----------------- char *  ------------------
 char *mx_fullpath(char *path, char *content);
 
-//  -------- int ---------
-int mx_directory_info(t_parse *p, char *path, t_flags *f);
+//  ----------------- int ------------------
+int mx_directory_info(t_parse *p, t_flags *f);
 int mx_parse_flags(int argc, char **argv, t_parse *p);
 
-//  -------- void ---------
+//  ----------------- void ------------------
 //  ---------- c ----------
 void mx_check_acl_and_attributes(char *path);
 void mx_colorize(struct stat forstat);
 void mx_count_max_len(t_parse *p, t_forlong *forlong);
 void mx_count_maxlen_files(t_parse *p, t_forlong *forlong);
-void mx_count_maxlen_manydirs(char *path, t_parse *p, t_forlong *forlong);
+void mx_count_maxlen_manydirs(t_parse *p, t_forlong *forlong);
 
 //  ---------- f ----------
 void mx_find_major_minor(int number, t_forlong *forlong);
@@ -128,29 +128,30 @@ void mx_init_parsing (t_parse *p);
 //  ---------- l ----------
 void mx_lexicographical_sort(t_parse *p);
 void mx_line_output(t_parse *p, t_flags *f);
-void mx_list_directory(t_parse *p, char *path, t_flags *f);
-void mx_list_few_filedirs(t_parse *p, char *path, t_flags *f);
-void mx_list_few_longdirs(char *path, t_forlong *forlong,
-                          t_parse *p, t_flags *f);
+void mx_list_directory(t_parse *p, t_flags *f);
+void mx_list_few_filedirs(t_parse *p, t_flags *f);
+void mx_list_few_longdirs(t_forlong *forlong, t_parse *p, t_flags *f);
+
 void mx_list_files(t_parse *p, t_flags *f);
 void mx_list_longfile(t_forlong *forlong, t_parse *p, t_flags *f);
-void mx_list_longdir(char *path, t_forlong *forlong, t_parse *p, t_flags *f);
+void mx_list_longdir(t_forlong *forlong, t_parse *p, t_flags *f);
 
 //  ---------- o ----------
 void mx_output_invalid_addr(char **invalid);
-void mx_output_ls(t_parse *p, char *path, t_flags *f);
+void mx_output_ls(t_parse *p, t_flags *f);
 
 //  ---------- p ----------
 void mx_parse_input(int argc, char **argv, t_parse *p, t_flags *f);
 void mx_parse_addresses(int i, int argc, char **argv, t_parse *p, t_flags *f);
 void mx_print_acl(char *fullpath);
 void mx_print_file_permissions(struct stat forstat);
-void mx_print_in_line(t_parse *p, int first_ln, bool flag_G);
-void mx_print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind);
+void mx_print_in_line(t_parse *p, int first_ln, t_flags *f);
+void mx_print_in_multiline(t_parse *p, int first_ln,
+                           struct winsize size_wind, t_flags *f);
 void mx_print_lname(char *name, int max_len);
 void mx_print_lname_right(char *name, int max_len);
 void mx_print_lnumber(int value, int max_len);
-void mx_print_manylongdirs(char *path, t_forlong *forlong,
+void mx_print_manylongdirs(t_forlong *forlong,
                            t_parse *p, t_flags *f);
 void mx_print_name_path(char *name_to_print, struct stat forstat,
                         char *fullpath, bool flag_G);
@@ -165,8 +166,3 @@ void mx_print_xattr(char *fullpath);
 void mx_sort_addresses (t_parse *, t_flags *f, int size);
 void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
 void mx_switch_flags(char *flags, t_flags *f);
-
-// ------------------------- draft ----------------------
-void mx_line_output_colorful(t_parse *p, char *path);
-// -------------------------------------------------------
-

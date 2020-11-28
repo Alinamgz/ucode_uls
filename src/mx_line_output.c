@@ -18,10 +18,8 @@ static int ln_terminal(int first_ln) { // try to make loop
     else if ((first_ln + 1) % 8 == 0) 
         first_ln++;
     else if ((first_ln + 2) % 8 == 0)
-        // first_ln = first_ln + 2;
         first_ln += 2;
     else if ((first_ln + 3) % 8 == 0)
-        // first_ln = first_ln + 3;
         first_ln += 3;  
     else 
         first_ln += 4;
@@ -33,7 +31,6 @@ static int ln_terminal(int first_ln) { // try to make loop
     return first_ln;
 }
 
-// TODO: make it work for -G, check for leaks
 void mx_line_output(t_parse *p, t_flags *f) {
     struct winsize size_wind;
     int first_ln = 0;
@@ -41,10 +38,11 @@ void mx_line_output(t_parse *p, t_flags *f) {
     ioctl(1, TIOCGWINSZ, &size_wind);
     first_ln = big_word(p);
 
-    first_ln = ln_terminal(first_ln);
+    first_ln = f->lg_G ? (first_ln + 1) : ln_terminal(first_ln);
 
     if (first_ln * p->count_of_objects <= size_wind.ws_col)
-       mx_print_in_line(p, first_ln, f->lg_G);
+        mx_print_in_line(p, first_ln, f);
     else
-        mx_print_in_multiline(p, first_ln, size_wind);
+        mx_print_in_multiline(p, first_ln, size_wind, f);
+
 }
