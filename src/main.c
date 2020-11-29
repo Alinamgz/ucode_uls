@@ -11,16 +11,17 @@ int main(int argc, char **argv) {
 
     if (argc == 1) {
         mx_list_directory(parse, path, &flags);
+        free(parse);
         return 0;
     }
     else {
         mx_init_parsing(parse);
         mx_parse_input(argc, argv, parse, &flags);
-        if (parse->invalid)
-            mx_output_invalid_addr(parse->invalid);
+        if (parse->invalid || parse->nopermis)
+            mx_output_invalid_addr(parse);
         mx_output_ls(parse, path, &flags);
     }
+    //system("leaks -q uls");
     mx_free_malloc(parse, &rslt);
-
     return rslt;
 }

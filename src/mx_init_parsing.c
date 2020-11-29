@@ -9,4 +9,5 @@ void mx_init_parsing (t_parse *p) {
     p->dirs = NULL;
     p->invalid = NULL;
     p->content_of_directory = NULL;
+    p->nopermis = NULL;
 }

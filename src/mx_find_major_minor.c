@@ -20,7 +20,7 @@ void mx_find_major_minor(int number, t_forlong *forlong) {
         ++i;
     }
     i = 0;
-    for (int j = 0; i != 8; j++) {
+    for (int j = 0; i != 14; j++) {
         forlong->minor += binary[i] * mx_pow(2, j);
         ++i;
     }

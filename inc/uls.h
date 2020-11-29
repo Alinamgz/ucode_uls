@@ -11,6 +11,7 @@
 #define ULS "uls: "
 #define ADDR_ERR ": No such file or directory\n"
 #define ACL_IGNORE "!#acl\n"
+#define DENIED_ERR ": Permission denied\n"
 
 // ---- colors -------
 #define RESET_COLORS "\x1B[0m"
@@ -54,12 +55,14 @@
 // ====== structs ======
 typedef struct s_parce {
     // bool *flags_state;
+    char *str_nopermis;
     char *flags;
     char *target;
     char **addresses;
     char **files;
     char **dirs;
     char **invalid;
+    char **nopermis;
     char **content_of_directory;
     int count_of_objects;
     int count_of_files;
@@ -97,6 +100,7 @@ typedef struct s_forlong {
     char *suffix_size;
     char *fault_groupid;
     char *fault_userid;
+    char *forhex;
 }              t_forlong;
 
 // ======= funcs =======
@@ -111,7 +115,7 @@ void mx_parse_addresses(int i, int argc, char **argv, t_parse *p, t_flags *f);
 void mx_sort_addresses (t_parse *, t_flags *f, int size);
 void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
 void mx_switch_flags(char *flags, t_flags *f);
-void mx_output_invalid_addr(char **invalid);
+void mx_output_invalid_addr(t_parse *p);
 void mx_colorize(struct stat forstat);
 // ------------------------- draft ----------------------
 void mx_line_output_colorful(t_parse *p, char *path);
@@ -150,3 +154,5 @@ void mx_print_xattr(char *fullpath);
 void mx_print_time(struct stat forstat, t_flags *f);
 void mx_print_user_group(struct stat forstat, t_forlong *forlong);
 void mx_free_malloc(t_parse *parse, int *rslt);
+void mx_output_permission_denied(t_parse *p);
+char *mx_custom_nbr_to_hex(unsigned long nbr, t_forlong *p);

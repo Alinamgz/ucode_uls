@@ -26,7 +26,6 @@ void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *
             mx_print_time(forstat, f);
             mx_print_name_path(p->content_of_directory[i],
                                forstat, fullpath, f->lg_G);
-
             if (f->lg_x)
                 mx_print_xattr(fullpath);
             if (f->lg_e)
