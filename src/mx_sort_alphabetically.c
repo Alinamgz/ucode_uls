@@ -77,9 +77,9 @@ static int partition(char **arr, int l, int r, bool flag_r) {
     int p = (r + l) / 2;
 
     while (l < r) {
-        for (;cmp(arr[p], arr[l]) && l < p; l++);
-        for (;cmp(arr[r], arr[p]) && r > p; r--);
-        if (l < r && cmp(arr[l], arr[r])) {
+        for (;cmp(arr[p], arr[l], flag_r) && l < p; l++);
+        for (;cmp(arr[r], arr[p], flag_r) && r > p; r--);
+        if (l < r && cmp(arr[l], arr[r], flag_r)) {
             p = l * (p == r) + r * (p == l) + p * (p != l && p != r);
             swapstr(arr, l, r);
         }
