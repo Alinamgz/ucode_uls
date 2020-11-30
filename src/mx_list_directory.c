@@ -22,7 +22,7 @@ static void column_output(t_parse *p, bool flag_G) {
 
 void mx_list_directory(t_parse *p, t_flags *f) {
     mx_directory_info(p, f);
-    if (isatty(1) && !f->lg_1) {
+    if (f->lg_C || (isatty(1) && !f->lg_1)) {
        mx_line_output(p, f);
     }
     else{

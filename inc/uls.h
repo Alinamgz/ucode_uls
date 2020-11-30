@@ -108,23 +108,16 @@ typedef struct s_forlong {
 
 // ===================== funcs =====================
 //  ----------------- char *  ------------------
+char *mx_custom_nbr_to_hex(unsigned long nbr, t_forlong *p);
 char *mx_fullpath(char *path, char *content);
 
 //  ----------------- int ------------------
 int mx_directory_info(t_parse *p, t_flags *f);
 int mx_parse_flags(int argc, char **argv, t_parse *p);
-<<<<<<< HEAD
 
 //  ----------------- void ------------------
 //  ---------- c ----------
 void mx_check_acl_and_attributes(char *path);
-=======
-void mx_parse_addresses(int i, int argc, char **argv, t_parse *p, t_flags *f);
-void mx_sort_addresses (t_parse *, t_flags *f, int size);
-void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
-void mx_switch_flags(char *flags, t_flags *f);
-void mx_output_invalid_addr(t_parse *p);
->>>>>>> 609ec1407d0a735a487cb5146e5e3433939047c1
 void mx_colorize(struct stat forstat);
 void mx_count_max_len(t_parse *p, t_forlong *forlong);
 void mx_count_maxlen_files(t_parse *p, t_forlong *forlong);
@@ -132,12 +125,6 @@ void mx_count_maxlen_manydirs(t_parse *p, t_forlong *forlong);
 
 //  ---------- f ----------
 void mx_find_major_minor(int number, t_forlong *forlong);
-<<<<<<< HEAD
-=======
-void mx_print_size_or_device(t_forlong *forlong, struct stat forstat, t_flags *f);
-void mx_for_flag_h(t_forlong *forlong, int number);
-void mx_print_lname_right(char *name, int max_len);
->>>>>>> 609ec1407d0a735a487cb5146e5e3433939047c1
 void mx_float_to_char(float n, char *res, int afterpoint);
 void mx_for_flag_h(t_forlong *forlong, int number);
 void mx_free_malloc(t_parse *parse, int *rslt);
@@ -157,8 +144,9 @@ void mx_list_longfile(t_forlong *forlong, t_parse *p, t_flags *f);
 void mx_list_longdir(t_forlong *forlong, t_parse *p, t_flags *f);
 
 //  ---------- o ----------
-void mx_output_invalid_addr(char **invalid);
+void mx_output_invalid_addr(t_parse *p);
 void mx_output_ls(t_parse *p, t_flags *f);
+void mx_output_permission_denied(t_parse *p);
 
 //  ---------- p ----------
 void mx_parse_input(int argc, char **argv, t_parse *p, t_flags *f);
@@ -176,19 +164,13 @@ void mx_print_manylongdirs(t_forlong *forlong,
 void mx_print_name_path(char *name_to_print, struct stat forstat,
                         char *fullpath, bool flag_G);
 void mx_print_size_or_device(t_forlong *forlong, struct stat forstat,
-                             t_flags *f, t_parse *p);
+                             t_flags *f);
 void mx_print_time(struct stat forstat, t_flags *f);
 void mx_print_type_of_file(struct stat forstat);
 void mx_print_user_group(struct stat forstat, t_forlong *forlong);
-<<<<<<< HEAD
 void mx_print_xattr(char *fullpath);
 
 //  ---------- s ----------
 void mx_sort_addresses (t_parse *, t_flags *f, int size);
 void mx_sort_alphabetically(char **arr, int left, int right, bool r_flag);
 void mx_switch_flags(char *flags, t_flags *f);
-=======
-void mx_free_malloc(t_parse *parse, int *rslt);
-void mx_output_permission_denied(t_parse *p);
-char *mx_custom_nbr_to_hex(unsigned long nbr, t_forlong *p);
->>>>>>> 609ec1407d0a735a487cb5146e5e3433939047c1

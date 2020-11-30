@@ -25,7 +25,7 @@ void mx_list_files(t_parse *p, t_flags *f) {
     p->count_of_objects = p->count_of_files;
     f->just_files = 1;
 
-    if (isatty(1) && !f->lg_1) {
+    if (f->lg_C || (isatty(1) && !f->lg_1)) {
         mx_line_output(p, f);
     }
     else{
