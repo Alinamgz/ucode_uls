@@ -20,11 +20,11 @@ static inline void name_outp(char *pref, char *name, bool flag_G, bool j_fl) {
     }
 }
 
-void mx_print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind,
+void mx_print_in_multiline(t_parse *p, int first_ln, int max_width,
                            t_flags *f) {
     int count = 0;
     int tabs = 0;
-    int num_of_columns = size_wind.ws_col / first_ln;
+    int num_of_columns = max_width / first_ln;
     int num_of_rows = p->count_of_objects / num_of_columns;
 
     if (p->count_of_objects % num_of_columns != 0) {
@@ -36,7 +36,7 @@ void mx_print_in_multiline(t_parse *p, int first_ln, struct winsize size_wind,
                       f->just_files);
 
             count = 0;
-            if (!f->lg_G) {
+            if (!f->lg_G && isatty(1)) {
                 count = (first_ln - mx_strlen(p->content_of_directory[j])) / 8;
                 if ((first_ln - mx_strlen(p->content_of_directory[j])) % 8 !=
                     0) {

@@ -155,7 +155,8 @@ void mx_print_acl(char *fullpath);
 void mx_print_file_permissions(struct stat forstat);
 void mx_print_in_line(t_parse *p, int first_ln, t_flags *f);
 void mx_print_in_multiline(t_parse *p, int first_ln,
-                           struct winsize size_wind, t_flags *f);
+                           int max_width, t_flags *f);
+
 void mx_print_lname(char *name, int max_len);
 void mx_print_lname_right(char *name, int max_len);
 void mx_print_lnumber(int value, int max_len);

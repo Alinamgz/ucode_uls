@@ -34,15 +34,22 @@ static int ln_terminal(int first_ln) { // try to make loop
 void mx_line_output(t_parse *p, t_flags *f) {
     struct winsize size_wind;
     int first_ln = 0;
+    int max_width = 0;
 
     ioctl(1, TIOCGWINSZ, &size_wind);
+    max_width = isatty(1) ? size_wind.ws_col : 79;
     first_ln = big_word(p);
 
-    first_ln = f->lg_G ? (first_ln + 1) : ln_terminal(first_ln);
-
-    if (first_ln * p->count_of_objects <= size_wind.ws_col)
+    if (isatty(1)){
+        first_ln = f->lg_G ? (first_ln + 1) : ln_terminal(first_ln);
+    }
+    else {
+        first_ln = first_ln + 2;
+    }
+    
+    if (first_ln * p->count_of_objects <= max_width)
         mx_print_in_line(p, first_ln, f);
     else
-        mx_print_in_multiline(p, first_ln, size_wind, f);
+        mx_print_in_multiline(p, first_ln, max_width, f);
 
 }
