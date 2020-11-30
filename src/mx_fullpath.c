@@ -16,5 +16,5 @@ char *mx_fullpath(char *path, char *content) {
         i++;
         fullpath[i] = content[j];
     }
-    return fullpath; // than free
+    return fullpath;
 }
