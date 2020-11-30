@@ -12,7 +12,7 @@ static int big_word(t_parse *p) {
     return ln;
 }
 
-static int ln_terminal(int first_ln) { // try to make loop
+static int ln_terminal(int first_ln) {
     if (first_ln % 8 == 0)
         first_ln += 8;
     else if ((first_ln + 1) % 8 == 0) 
