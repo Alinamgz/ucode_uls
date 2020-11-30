@@ -1,7 +1,7 @@
 #include "uls.h"
 
 void mx_count_max_len(t_parse *p, t_forlong *forlong) {
-    forlong->max_len = (int *)malloc(sizeof(int) * 7); //free
+    forlong->max_len = (int *)malloc(sizeof(int) * 7);
     forlong->major = 0;
     forlong->minor = 0;
     forlong->count_of_device_files = 0;
