@@ -30,7 +30,7 @@ void mx_print_xattr(char *fullpath) {
             return;
         if (vallen == 0) {
                 mx_printstr("\t");
-                mx_print_lnumber(vallen, 3);
+                mx_print_lnumber(vallen, 4);
         }
         if (vallen > 0) {
             val = malloc(vallen + 1);
@@ -42,10 +42,8 @@ void mx_print_xattr(char *fullpath) {
                 return;
             else {
                 val[vallen] = 0;
-                //mx_printstr(val);
                 mx_printstr("\t");
-                mx_print_lnumber(vallen, 3);
-                //mx_printint(vallen);
+                mx_print_lnumber(vallen, 4);
             }
             free(val);
         }
@@ -53,6 +51,7 @@ void mx_print_xattr(char *fullpath) {
         keylen = strlen(key) + 1;
         buflen -= keylen;
         key += keylen;
+    mx_printchar(' ');
     }
     free(buf);
 }
