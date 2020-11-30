@@ -50,11 +50,8 @@ void mx_count_max_len(t_parse *p, t_forlong *forlong) {
             forlong->max_len[3] = mx_intlen(forstat.st_size);
             
         if (S_ISCHR(forstat.st_mode) || S_ISBLK(forstat.st_mode)) {
-            //mx_find_major_minor(forstat.st_rdev, forlong);
-            //if (mx_intlen(forlong->major) > forlong->max_len[5])
-                forlong->max_len[5] = 3;//mx_intlen(forlong->major);
-            //if (mx_intlen(forlong->minor) > forlong->max_len[6])
-                forlong->max_len[6] = 3;//mx_intlen(forlong->minor);
+                forlong->max_len[5] = 3;
+                forlong->max_len[6] = 3;
             forlong->count_of_device_files++;
         }
     }
