@@ -145,7 +145,7 @@ void mx_print_name_path(char *name_to_print, struct stat forstat, char *fullpath
 void mx_print_type_of_file(struct stat forstat);
 void mx_print_file_permissions(struct stat forstat);
 void mx_find_major_minor(int number, t_forlong *forlong);
-void mx_print_size_or_device(t_forlong *forlong, struct stat forstat, t_flags *f, t_parse *p);
+void mx_print_size_or_device(t_forlong *forlong, struct stat forstat, t_flags *f);
 void mx_for_flag_h(t_forlong *forlong, int number);
 void mx_print_lname_right(char *name, int max_len);
 void mx_float_to_char(float n, char *res, int afterpoint);

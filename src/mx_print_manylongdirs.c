@@ -21,7 +21,7 @@ void mx_print_manylongdirs(char *path, t_forlong *forlong, t_parse *p, t_flags *
             mx_print_lnumber(forstat.st_nlink, forlong->max_len[0]);
             mx_print_user_group(forstat, forlong);
             mx_printchar(' ');
-            mx_print_size_or_device(forlong, forstat, f, p);
+            mx_print_size_or_device(forlong, forstat, f);
             mx_printchar(' ');
             mx_print_time(forstat, f);
             mx_print_name_path(p->content_of_directory[i],
