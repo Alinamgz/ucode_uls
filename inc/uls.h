@@ -54,7 +54,6 @@
 
 // ====== structs ======
 typedef struct s_parce {
-    // bool *flags_state;
     char *str_nopermis;
     char *flags;
     char *path_pref;
