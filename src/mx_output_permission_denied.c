@@ -29,6 +29,6 @@ void mx_output_permission_denied(t_parse *p) {
 		if (p->nopermis[i + 1] || p->dirs)
 			mx_printchar('\n');
 	    }
+		mx_strdel(&p->str_nopermis);
     }
-	mx_strdel(&p->str_nopermis);
 }
