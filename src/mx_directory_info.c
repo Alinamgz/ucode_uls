@@ -4,7 +4,7 @@ static int pull_names (t_parse *p, t_flags *f) {
     struct dirent *de;
     int k = 0;
 
-    p->content_of_directory = (char **)malloc(sizeof(char *) * p->count_of_objects + 1); // free
+    p->content_of_directory = (char **)malloc(sizeof(char *) * p->count_of_objects + 1);
 
     DIR *dr = opendir(p->path_pref);
     if (dr == NULL) { 
