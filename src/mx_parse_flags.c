@@ -15,7 +15,7 @@ static inline void pick_unique_flags(const char *str, t_parse *p) {
     char buf[2] = "";
 
     for (int i = 1; str[i]; i++) {
-        if (str[i] != '1' && str[i] != 'l') {
+        if (str[i] != '1' && str[i] != 'l' && str[i] != 'C') {
             if (mx_get_char_index(p->flags, str[i]) >= 0) {
                 continue;
             }

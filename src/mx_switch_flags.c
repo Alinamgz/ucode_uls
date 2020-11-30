@@ -6,6 +6,10 @@ void mx_switch_flags(char *flags, t_flags *f) {
 			case 'A':
 				f->lg_A = (!f->lg_a && !f->lg_f) ? 1 : 0;
 				break;
+			case 'C':
+				f->lg_C = 1;
+				f->lg_l = 0;
+				f->lg_1 = 0;
 			case 'G':
 				f->lg_G = 1;
 				break;
@@ -21,6 +25,7 @@ void mx_switch_flags(char *flags, t_flags *f) {
 				break;
 			case 'l':
 				f->lg_l = 1;
+				f->lg_C = 0;
 				f->lg_1 = 0;
 				break;
 			case 'r':
@@ -29,6 +34,7 @@ void mx_switch_flags(char *flags, t_flags *f) {
 			case '1':
 				f->lg_1 = 1;
 				f->lg_l = 0;
+				f->lg_C = 0;
 				break;
 			case 'T':
 				f->lg_T = 1;

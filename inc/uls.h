@@ -1,7 +1,7 @@
 #pragma once
 
 // ====== defines ======
-#define VALID_FLAGS "AGT@aefhlr1"
+#define VALID_FLAGS "ACGT@aefhlr1"
 #define BUF_SIZE 64
 
 // ---- error msg -------
@@ -76,6 +76,7 @@ typedef struct s_sort {
 
 typedef struct s_flags {
     bool lg_A;
+    bool lg_C;
     bool lg_G;
     bool lg_a;
     bool lg_f;

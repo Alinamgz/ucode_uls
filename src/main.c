@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv) {
     t_parse *parse = (t_parse *)malloc(sizeof(t_parse));
-    t_flags flags = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    t_flags flags = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     int rslt = 0;
 
     parse->path_pref = ".";
@@ -21,8 +21,8 @@ int main(int argc, char **argv) {
     }
     mx_free_malloc(parse, &rslt);
 
-    mx_printstr("\n -------------- main -----------\n");
-    system("leaks -q uls");
+    // mx_printstr("\n -------------- main -----------\n");
+    // system("leaks -q uls");
 
     return rslt;
 }
