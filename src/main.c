@@ -1,7 +1,5 @@
 #include "uls.h"
 
-// TODO: del .travis.yml before pushing to ucode gitlab!
-
 int main(int argc, char **argv) {
     t_parse *parse = (t_parse *)malloc(sizeof(t_parse));
     t_flags flags = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
