@@ -28,7 +28,9 @@ void mx_print_in_line(t_parse *p, int first_ln, t_flags *f) {
         name_outp(p->path_pref, p->content_of_directory[i], f->lg_G,
                   f->just_files);
 
-        for (int j = 0; j < fake_ln; j++) mx_printchar(' ');
+        if (i + 1 != p->count_of_objects)
+            for (int j = 0; j < fake_ln; j++)
+                mx_printchar(' ');
     }
     mx_printchar('\n');
 }

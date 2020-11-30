@@ -42,16 +42,17 @@ void mx_print_in_multiline(t_parse *p, int first_ln, int max_width,
                     0) {
                     count++;
                 }
-                for (tabs = 0; tabs < count; tabs++) {
-                    mx_printchar('\t');
+                if (p->count_of_objects > j + num_of_rows)
+                    for (tabs = 0; tabs < count; tabs++) {
+                        mx_printchar('\t');
                 }
-
             }
             else {
                 count = (first_ln - mx_strlen(p->content_of_directory[j]));
-                for (tabs = 0; tabs < count; tabs++) {
-                    mx_printchar(' ');
-                }
+                if (p->count_of_objects > j + num_of_rows)
+                    for (tabs = 0; tabs < count; tabs++) {
+                        mx_printchar(' ');
+                    }
             }
         }
         mx_printchar('\n');
