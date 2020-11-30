@@ -50,5 +50,4 @@ void mx_line_output(t_parse *p, t_flags *f) {
         mx_print_in_line(p, first_ln, f);
     else
         mx_print_in_multiline(p, first_ln, max_width, f);
-
 }

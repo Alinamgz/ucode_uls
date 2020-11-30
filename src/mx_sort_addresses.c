@@ -36,7 +36,6 @@ static inline void pre_sorting (t_parse *p, t_sort *s, bool flag_l) {
             }
         }
         else {
-            // TODO err ahndlong with errno and so on
             s->addr_sort[s->j] = 'i';
             s->i++;
         }

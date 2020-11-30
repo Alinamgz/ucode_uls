@@ -35,6 +35,6 @@ void mx_list_directory(t_parse *p, t_flags *f) {
             free(p->content_of_directory[i]);
     if (p->content_of_directory)
         free(p->content_of_directory);
-    p->content_of_directory = NULL; //free
+    p->content_of_directory = NULL;
     p->count_of_objects = 0;
 }

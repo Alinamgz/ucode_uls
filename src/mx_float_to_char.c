@@ -3,10 +3,7 @@
 static void reverse(char* str, int len);
 static int intToStr(int x, char str[], int d);
 
-/**
- * Converts a floating-point/double number to a string.
- */
-
+// Converts a floating-point/double number to a string.
 void mx_float_to_char(float n, char *res, int afterpoint) {
     int ipart = (int)n;
     float fpart = n - (float)ipart;
