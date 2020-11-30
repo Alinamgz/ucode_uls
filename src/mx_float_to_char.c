@@ -11,12 +11,15 @@ void mx_float_to_char(float n, char *res, int afterpoint) {
     int ipart = (int)n;
     float fpart = n - (float)ipart;
     int i = intToStr(ipart, res, 0);
+    float fpart2 = 0;
+    int ipart2 = 0;
     if (afterpoint != 0) {
         res[i] = '.';
         fpart = fpart * mx_pow(10, afterpoint);
-        if (afterpoint == 1 && fpart >= 0.5) {
+        ipart2 = (int)fpart;
+        fpart2 = fpart - ipart2;
+        if (afterpoint == 1 && fpart2 >= 0.5)
             fpart += 1;
-        }
         intToStr((int)fpart, res + i + 1, afterpoint);
     }
 }

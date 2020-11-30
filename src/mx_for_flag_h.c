@@ -3,9 +3,12 @@
 static void convert(t_forlong *forlong, int number, char *type, int n) {
     char *temp;
 
-    number /= n;
-    forlong->suffix_size = mx_strnew(mx_intlen(number) + 1);
-    temp = mx_itoa(number);
+    float fres = (float)number / (float)n;
+    float fpart = fres - (number / n);
+    if (fpart >= 0.5)
+            fres += 1;
+    forlong->suffix_size = mx_strnew(mx_intlen((int)fres) + 1);
+    temp = mx_itoa((int)fres);
     forlong->suffix_size = mx_strcpy(forlong->suffix_size, temp);
     forlong->suffix_size = mx_strcat(forlong->suffix_size, type);
     mx_strdel(&temp);
