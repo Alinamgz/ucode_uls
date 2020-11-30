@@ -7,22 +7,19 @@ int main(int argc, char **argv) {
     t_flags flags = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     int rslt = 0;
 
-    parse->path_pref = ".";
     if (argc == 1 && argv) {
-        mx_list_directory(parse, &flags);
+        mx_list_directory(parse, path, &flags);
+        free(parse);
         return 0;
     }
     else {
         mx_init_parsing(parse);
         mx_parse_input(argc, argv, parse, &flags);
-        if (parse->invalid)
-            mx_output_invalid_addr(parse->invalid);
-        mx_output_ls(parse, &flags);
+        if (parse->invalid || parse->nopermis)
+            mx_output_invalid_addr(parse);
+        mx_output_ls(parse, path, &flags);
     }
+    //system("leaks -q uls");
     mx_free_malloc(parse, &rslt);
-
-    // mx_printstr("\n -------------- main -----------\n");
-    // system("leaks -q uls");
-
     return rslt;
 }

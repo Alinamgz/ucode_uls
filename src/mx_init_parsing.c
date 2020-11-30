@@ -10,4 +10,5 @@ void mx_init_parsing (t_parse *p) {
     p->count_of_objects = 0;
     p->count_of_files = 0;
     p->count_of_dirs = 0;
+    p->nopermis = NULL;
 }
