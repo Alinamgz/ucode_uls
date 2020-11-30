@@ -10,6 +10,7 @@ void mx_switch_flags(char *flags, t_flags *f) {
 				f->lg_C = 1;
 				f->lg_l = 0;
 				f->lg_1 = 0;
+				break;
 			case 'G':
 				f->lg_G = isatty(1) ? 1 : 0;
 				break;

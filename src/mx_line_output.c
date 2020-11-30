@@ -46,7 +46,6 @@ void mx_line_output(t_parse *p, t_flags *f) {
     else {
         first_ln = first_ln + 2;
     }
-    
     if (first_ln * p->count_of_objects <= max_width)
         mx_print_in_line(p, first_ln, f);
     else

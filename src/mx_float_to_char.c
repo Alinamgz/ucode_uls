@@ -14,7 +14,7 @@ void mx_float_to_char(float n, char *res, int afterpoint) {
     if (afterpoint != 0) {
         res[i] = '.';
         fpart = fpart * mx_pow(10, afterpoint);
-        if (afterpoint == 1 && fpart >= 1/2) {
+        if (afterpoint == 1 && fpart >= 0.5) {
             fpart += 1;
         }
         intToStr((int)fpart, res + i + 1, afterpoint);
