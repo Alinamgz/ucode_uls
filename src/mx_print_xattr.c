@@ -48,7 +48,7 @@ void mx_print_xattr(char *fullpath) {
             free(val);
         }
             
-        keylen = strlen(key) + 1;
+        keylen = mx_strlen(key) + 1;
         buflen -= keylen;
         key += keylen;
     mx_printchar(' ');
